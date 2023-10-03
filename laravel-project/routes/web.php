@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormationController;
 
 /*
+
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -13,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','App\Http\Controllers\FormationController@getall')->name('share.home');
+
+Route::get('/formations/create','App\Http\Controllers\FormationController@create');
+Route::post('/formations', 'App\Http\Controllers\FormationController@store')->name('formations.store');
+
+
+Route::get('/login',function () {
+    return view('share.login');
+})->name('share.login');
+
+
+
