@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormationController;
-
+use App\Http\Controllers\FreelancerController;
 /*
 
 |--------------------------------------------------------------------------
@@ -27,3 +27,7 @@ Route::get('/login',function () {
 
 
 
+Route::get('/freelancers', [FreelancerController::class,'index'])->name('Freelancer.index');
+Route::get('/freelancers/list', [FreelancerController::class,'list'])->name('Freelancer.list');
+Route::get('/freelancers/create', [FreelancerController::class,'create'])->name('Freelancer.create');
+Route::post('/freelancers', [FreelancerController::class,'store'])->name('Freelancer.store');
