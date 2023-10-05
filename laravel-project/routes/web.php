@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\FreelancerController;
+use App\Http\Controllers\FreelancerResumeController;
 /*
 
 |--------------------------------------------------------------------------
@@ -37,3 +38,14 @@ Route::post('/freelancers', [FreelancerController::class,'store'])->name('Freela
 Route::delete('/freelancers/{freelancer}/delete', [FreelancerController::class,'delete'])->name('Freelancer.delete');
 Route::get('/freelancers/{freelancer}/edit', [FreelancerController::class,'edit'])->name('Freelancer.edit');
 Route::put('/freelancers/{freelancer}/update', [FreelancerController::class,'update'])->name('Freelancer.update');
+
+Route::get('/','App\Http\Controllers\FormationController@getall')->name('share.home');
+
+
+Route::get('/freelancer-resumes', [FreelancerResumeController::class, 'index']);
+Route::get('/freelancer-resumes/create', [FreelancerResumeController::class, 'create']);
+Route::post('/freelancer-resumes', [FreelancerResumeController::class, 'store']);
+Route::get('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'show']);
+Route::get('/freelancer-resumes/{id}/edit', [FreelancerResumeController::class, 'edit']);
+Route::put('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'update']);
+Route::delete('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'destroy']);
