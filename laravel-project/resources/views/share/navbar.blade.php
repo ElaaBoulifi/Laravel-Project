@@ -48,22 +48,7 @@
 
 </head>
 <body>
-<div class="preloader">
-        <div class="loader">
-            <div class="ytp-spinner">
-                <div class="ytp-spinner-container">
-                    <div class="ytp-spinner-rotator">
-                        <div class="ytp-spinner-left">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
-                        <div class="ytp-spinner-right">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 <header class="header-area">
         <div class="header-navbar">
             <div class="container">
@@ -147,22 +132,6 @@
             </div> <!-- container -->
         </div> <!-- header navbar -->
 
-        <div class="page_banner bg_cover" style="background-image: url(assets/images/page_banner.jpg)">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="banner_content d-sm-flex align-items-center justify-content-between">
-                            <div class="content">
-                                <h3 class="page_title">Login</h3>
-                                <p>More than 6 million jobseekers turn to Fitcareer in their search for work, making over 150,000 applications every day.</p>
-                            </div> <!-- content -->
-                            <div class="banner_btn">
-                                <a class="main-btn " href="#">75K JOBS</a>
-                            </div> <!-- banner btn -->
-                        </div> <!-- banner content -->
-                    </div>
-                </div> <!-- row -->
-            </div> <!-- container -->
-        </div> <!-- page banner -->
+       
     </header>
 </body>

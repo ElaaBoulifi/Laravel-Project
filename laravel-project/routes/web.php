@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\FreelancerController;
+use App\Http\Controllers\ReclamationController;
+
 /*
 
 |--------------------------------------------------------------------------
@@ -26,6 +28,11 @@ Route::get('/login',function () {
 })->name('share.login');
 
 
+Route::get('/reclamation', [ReclamationController::class,'create'])->name('reclamations.create');
+Route::post('/reclamations', [ReclamationController::class,'store'])->name('reclamations.store');
+Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations.index');
+Route::delete('/reclamations/{id}', 'App\Http\Controllers\ReclamationController@destroy')->name('reclamations.destroy');
+Route::get('/reclamationslist', [ReclamationController::class, 'admin_reclamations'])->name('reclamations.admin_reclamations');
 
 Route::get('/freelancers', [FreelancerController::class,'index'])->name('Freelancer.index');
 Route::get('/freelancers/list', [FreelancerController::class,'list'])->name('Freelancer.list');
