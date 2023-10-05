@@ -17,7 +17,7 @@ use App\Http\Controllers\FreelancerController;
 
 Route::get('/','App\Http\Controllers\FormationController@getall')->name('share.home');
 
-Route::get('/formations/create','App\Http\Controllers\FormationController@create');
+Route::get('/formations/create','App\Http\Controllers\FormationController@create')->name('formations.create');
 Route::post('/formations', 'App\Http\Controllers\FormationController@store')->name('formations.store');
 
 
@@ -25,7 +25,10 @@ Route::get('/login',function () {
     return view('share.login');
 })->name('share.login');
 
-
+Route::get('/formations/list',[FormationController::class,'list' ])->name('formations.list');
+Route::delete('/formations/{formation}', [FormationController::class,'destroy' ])->name('formations.delete');
+Route::get('/formations/{formation}/edit', 'App\Http\Controllers\FormationController@edit')->name('formations.edit');
+Route::put('/updatee/{formation}', 'App\Http\Controllers\FormationController@update')->name('formations.updatee');
 
 Route::get('/freelancers', [FreelancerController::class,'index'])->name('Freelancer.index');
 Route::get('/freelancers/list', [FreelancerController::class,'list'])->name('Freelancer.list');

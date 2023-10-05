@@ -259,18 +259,18 @@
             <div class="row align-items-center">
                 <div class="col-md-7">
                     <div class="section_title pb-25">
-                        <h5 class="sub_title">Explore</h5>
-                        <h3 class="main_title">Trending and Recent Jobs</h3>
+                        <h5 class="sub_title">inscrivez vous</h5>
+                        <h3 class="main_title">Nos formations</h3>
                     </div> <!-- section title -->
                 </div>
                 <div class="col-md-5">
                     <div class="jobs_tabs_menu d-flex justify-content-md-end">
                         <ul class="nav" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="active" id="trending-tab" data-toggle="tab" href="#trending" role="tab" aria-controls="trending" aria-selected="true">Trending</a>
+                                <a class="active" id="trending-tab" data-toggle="tab" href="#trending" role="tab" aria-controls="trending" aria-selected="true">all</a>
                             </li>
                             <li class="nav-item">
-                                <a id="recent-tab" data-toggle="tab" href="#recent" role="tab" aria-controls="recent" aria-selected="false">Recent jobs</a>
+                                <a id="recent-tab" data-toggle="tab" href="#recent" role="tab" aria-controls="recent" aria-selected="false"></a>
                             </li>
                         </ul> <!-- nav -->
                     </div> <!-- jobs tabs menu -->
@@ -283,15 +283,15 @@
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_jobs text-center mt-30">
                                 <div class="jobs_image">
-                                    <img src="assets/images/jobs-1.jpg" alt="jobs">
+                                <img src="{{ asset('images/' . $formation->image) }}" width="100" height="100" alt="Image"></td>
                                 </div>
                                 <div class="jobs_content">
                                     <h4 class="jobs_title"><a href="job-details.html">{{$formation->titre}}</a></h4>
-                                    <p class="sub_title">SpanTech</p>
+                                    <p class="sub_title">{{$formation->description}}</p>
                                 </div>
                                 <div class="jobs_meta d-flex justify-content-between">
-                                    <p class="location"><i class="fa fa-map-marker"></i> 18 Brooklyn, NY</p>
-                                    <p class="time"><i class="fa fa-clock-o"></i> Full time</p>
+                                    <p class="location"><i class="fa fa-money"></i> {{$formation->prix}}</p>
+                                    <p class="time"><i class="fa fa-clock-o"></i>{{$formation->date_debut}} </p>
                                 </div>
                                 <div class="jobs_btn">
                                     <a href="job-details.html" class="main-btn main-btn-2" data-toggle="modal" data-target="#exampleModal">inscrivez vous</a>
@@ -308,6 +308,48 @@
                     @endforeach
                     </div> <!-- row -->
                 </div>
+       
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+                    
+    <div class="modal-dialog d-flex justify-content-center">
+    <br>
+                    <br>
+                    <br>
+        <div class="modal-content w-75">
+        
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Subscribe</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form>
+                    <!-- Name input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="name3" class="form-control" />
+                        <label class="form-label" for="name3">Name</label>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="email3" class="form-control" />
+                        <label class="form-label" for="email3">Email address</label>
+                    </div>
+
+                    <!-- Checkbox -->
+                    <div class="form-check d-flex justify-content-center mb-4">
+                        <input class="form-check-input me-2" type="checkbox" value="" id="checkbox3" checked />
+                        <label class="form-check-label" for="checkbox3">
+                            I have read and agree to the terms
+                        </label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
                 <div class="tab-pane fade" id="recent" role="tabpanel" aria-labelledby="recent-tab">
                     <div class="row">
                         <div class="col-lg-4 col-sm-6">
