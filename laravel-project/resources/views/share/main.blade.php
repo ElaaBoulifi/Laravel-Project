@@ -1,11 +1,11 @@
 
-     @include('share.header1')
+@include('share.header1')
 
  
 @yield("content")
 
 
 
-   @include('share.footer1')
+@include('share.footer1')
 
    
