@@ -27,6 +27,9 @@ Route::get('/candidatures', 'App\Http\Controllers\CandidatureController@getall')
 Route::get('/formations/create','App\Http\Controllers\FormationController@create');
 Route::post('/formations', 'App\Http\Controllers\FormationController@store')->name('formations.store');
 Route::get('/projets', 'App\Http\Controllers\projetController@index')->name('projet');
+Route::delete('/projets/{id}', 'App\Http\Controllers\projetController@destroy')->name('projets.destroy');
+Route::delete('/candidatures/{id}', 'App\Http\Controllers\CandidatureController@destroy')->name('candidature.destroy');
+Route::get('/candidatures/list', [CandidatureController::class,'list'])->name('condidature.back');
 
 Route::get('/projet','App\Http\Controllers\projetController@getall')->name('projet');
 Route::get('/create','App\Http\Controllers\projetController@create');

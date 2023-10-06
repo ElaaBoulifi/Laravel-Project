@@ -33,7 +33,7 @@
 <br></br>
 
 <div class="center-form">
-    <form action="{{ route('candidature.store') }}" method="POST">
+    <form action="{{ route('candidature.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <h4 class="post_job_title text-center">Basic Information</h4>
@@ -50,9 +50,21 @@
 
         <div class="form-input">
             <label for="lettre_motivation">Lettre de Motivation:</label>
-            <textarea id="lettre_motivation" name="lettre_motivation" required class="form-control"></textarea>
+            <textarea id="summernote" name="lettre_motivation" required class="form-control"></textarea>
+        
+</div>
+        <div class="form-input">
+            <label for="cv"> cv:</label>
+            <input type="file" name="cv">
         </div>
-
+        <div class="form-input">
+            <label for="tel">tel:</label>
+            <textarea id="tel" name="tel" required class="form-control"></textarea>
+        </div>
+        <div class="form-input">
+            <label for="email">email:</label>
+            <textarea id="email" name="email"  type="email" required class="form-control"></textarea>
+        </div>
         <input type="hidden" name="projet_id" value="{{ $projet_id }}">
 
       

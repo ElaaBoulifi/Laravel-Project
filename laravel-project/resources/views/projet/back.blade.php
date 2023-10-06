@@ -33,15 +33,22 @@
                                         @foreach ($data as $item)
                                             <tr>
                                                 <td>{{ $item->id }}</td>
-                                                <td>{{ $item->titre }} {!! html_entity_decode($item->description) !!}/td>
+                                                <td>{{ $item->titre }} </td>
+                                                <td>{!! html_entity_decode($item->description) !!}</td>
                                                 <td>{{ $item->duree }}</td>
                                                 <td>{{ $item->date_debut }}</td>
                                                 <td>{{ $item->prix }}</td>
 
-                                                <td>
-                                                    <a name="{{ $item->id }}" class="btn btn-danger delete-item" onclick="return confirm('Are you sure you want to delete this project {{ $item->titre }} ?')"><i class="bi bi-trash"></i></a>
-                                                    <button type="button" name="{{ $item->id }}" class="btn btn-primary"><i class="bi bi-folder"></i></button>
-                                                </td>
+                                                <td  style="padding: 10px;">
+                                            <form method="POST" action="{{ route('projets.destroy', $item->id) }}">
+                                              @csrf
+                                              @method('DELETE')
+                                              <button type="submit" class="btn btn-danger">
+                                           
+                                                  <i class="bi bi-trash"></i> Supprimer
+                                              </button>
+                                          </form>
+                                      </td>
                                                 <!-- Add more table columns to display other attributes -->
                                             </tr>
                                         @endforeach

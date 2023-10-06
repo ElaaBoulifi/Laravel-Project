@@ -290,51 +290,41 @@
         </div> <!-- projects top bar -->
         
         <div class="job_projects">
-            <div class="row">
+    <div class="row">
+        <?php $count = 0; // Add this counter ?>
+        @foreach($projet as $projett)
+            @if($count % 4 == 0 && $count != 0) 
+                </div> <!-- end row -->
+                <div class="row"> <!-- new row after every 4 cards -->
+            @endif
 
-                @php $counter = 1; @endphp
-
-                @foreach($projet as $projett)
-                    @if($counter == 1)
-                        <div class="row">
-                    @endif
-
-                    <div class="col-sm-4">
-                        <div class="single_jobs jobs_border text-center mt-30">
-                            <div class="jobs_image">
-                                <img src="assets/images/jobs-1.jpg" alt="jobs">
-                            </div>
-                            <div class="jobs_content">
-                                <h4 class="jobs_title"><a href="job-details.html">{{$projett->titre}}</a></h4>
-                                <p class="description">{!! html_entity_decode($projett->description) !!}</p>
-                                <p class="duree">Durée: {{$projett->duree}} jours</p>
-                                <p class="date_debut"><i class="fa fa-clock-o"></i> {{$projett->date_debut}}</p>
-                                <p class="prix">Prix: {{$projett->prix}} $</p>
-                            </div>
-                            <div class="jobs_meta d-flex justify-content-between">
-                                <p class="location"><i class="fa fa-map-marker"></i> 18 Brooklyn, NY</p>
-                                <p class="time"><i class="fa fa-clock-o"></i> Freelance</p>
-                            </div>
-                            <div class="jobs_btn"  >
-<a href="{{ route('condidature.create', ['projets' => $projett->id]) }}">postuler</a>
-                            </div>
-                        </div>
+            <div class="col-sm-3"> <!-- changed to col-sm-3 for 4 cards in a row -->
+                <div class="single_jobs jobs_border text-center mt-30">
+                    <div class="jobs_image">
+                        <img src="assets/images/jobs-1.jpg" alt="jobs">
                     </div>
+                    <div class="jobs_content">
+                        <h4 class="jobs_title"><a href="job-details.html">{{$projett->titre}}</a></h4>
+                        <p class="description">{!! html_entity_decode($projett->description) !!}</p>
+                        <p class="duree">Durée: {{$projett->duree}} jours</p>
+                        <p class="date_debut"><i class="fa fa-clock-o"></i> {{$projett->date_debut}}</p>
+                        <p class="prix">Prix: {{$projett->prix}} $</p>
+                    </div>
+                    <div class="jobs_meta d-flex justify-content-between">
+                        <p class="location"><i class="fa fa-map-marker"></i> 18 Brooklyn, NY</p>
+                        <p class="time"><i class="fa fa-clock-o"></i> Freelance</p>
+                    </div>
+                    <div class="jobs_btn">
+                        <a href="{{ route('condidature.create', ['projets' => $projett->id]) }}">postuler</a>
+                    </div>
+                </div> <!-- single_jobs -->
+            </div> <!-- col-sm-3 -->
 
-                    @if($counter == 3)
-                        </div>
-                        @php $counter = 0; @endphp
-                    @endif
+            <?php $count++; // Increment the counter ?>
+        @endforeach
+    </div> <!-- end row -->
+</div> <!-- job_projects -->
 
-                    @php $counter++; @endphp
-                @endforeach
-
-                @if($counter != 1)
-                @endif
-
-            </div> <!-- row -->
-        </div> <!-- job_projects -->
-  <!-- col-lg-8 -->
 
 
              <!-- container -->

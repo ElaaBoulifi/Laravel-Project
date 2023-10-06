@@ -59,4 +59,10 @@ class projetController extends Controller
     $projets = projetModel::all();
     return view('projet.list', compact('projets'));
 }
+public function destroy($id)
+{
+    $projets = projetModel::findOrFail($id);
+    $projets->delete();
+    return redirect()->route('projet.back')->with('success', 'projet supprimée avec succès.');
+}
 }
