@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormationController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\FreelancerController;
 /*
 
@@ -19,6 +20,16 @@ Route::get('/','App\Http\Controllers\FormationController@getall')->name('share.h
 
 Route::get('/formations/create','App\Http\Controllers\FormationController@create');
 Route::post('/formations', 'App\Http\Controllers\FormationController@store')->name('formations.store');
+
+
+
+Route::get('/events/create','App\Http\Controllers\EventController@create');
+Route::post('/events', 'App\Http\Controllers\EventController@store')->name('events.store');
+Route::get('/events/list',[EventController::class,'list' ])->name('events.list');
+
+Route::delete('/events/{events}', [EventController::class,'destroy' ])->name('events.delete');
+Route::get('/events/{events}/edit', 'App\Http\Controllers\EventController@edit')->name('events.edit');
+Route::put('/updatee/{events}', 'App\Http\Controllers\EventController@update')->name('events.updatee');
 
 
 Route::get('/login',function () {
