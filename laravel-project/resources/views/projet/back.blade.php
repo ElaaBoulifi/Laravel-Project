@@ -24,6 +24,7 @@
                                             <th>duree</th>
                                             <th>date</th>
                                             <th>prix</th>
+                                            <th>voir les condidatures</th>
 
                                             <th>Actions</th>
                                             <!-- Add more table headers as needed -->
@@ -38,6 +39,11 @@
                                                 <td>{{ $item->duree }}</td>
                                                 <td>{{ $item->date_debut }}</td>
                                                 <td>{{ $item->prix }}</td>
+                                                <td>
+   <a href="{{ route('projets.candidatures', $item->id) }}" class="btn btn-danger">
+       Voir les candidatures
+   </a>
+</td>
 
                                                 <td  style="padding: 10px;">
                                             <form method="POST" action="{{ route('projets.destroy', $item->id) }}">

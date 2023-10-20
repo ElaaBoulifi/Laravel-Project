@@ -35,8 +35,8 @@ class FormationController extends Controller
         return redirect()->route('formations.create');
     }
     public function getall(){
-        $formations = formationModel::all();
-        return view('share.home', ['formations' => $formations]);
+      $formations = formationModel::all();
+     return view('share.home', ['formations' => $formations]);
 
     }
 

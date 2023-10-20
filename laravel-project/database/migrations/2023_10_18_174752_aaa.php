@@ -13,16 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('projets', function (Blueprint $table) {
+        Schema::create('subscribers', function (Blueprint $table) {
             $table->id();
-            $table->string('titre')->nullable();
-            $table->text('description')->nullable();
-            $table->string('duree')->nullable();
-            $table->date('date_debut')->nullable();
-            $table->string('prix')->nullable();
-            $table->timestamps(false);
-        });
-    }    }
+            $table->string('email')->unique();
+            $table->timestamps();
+        });    }
 
     /**
      * Reverse the migrations.
@@ -31,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('subscribers');
+
         //
     }
 };

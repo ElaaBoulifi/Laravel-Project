@@ -20,19 +20,16 @@
               <i class="bi bi-circle"></i><span>Freelancers List</span>
             </a>
           </li>
-          <li >
-            <a  class="{{ request()->is('projet/list*') ? 'active' : '' }}" href="/projet/list">
-              <i class="bi bi-circle"></i><span>projects List</span>
-            </a>
-          </li>
+      
         </ul>
       </li><!-- End Components Nav -->
 
-
+      <li class="nav-item">
+      <a  class="{{ request()->is('projet/list*') ? 'active' : '' }}" href="/projet/list">
+              <i class="bi bi-menu-button-wide"></i><span>projects List</span>
+            </a>
   
- 
 
- 
     </ul>
-
+</li>
   </aside><!-- End Sidebar-->

@@ -41,18 +41,28 @@ class CandidatureController extends Controller
 
         $data = CandidatureModel::paginate(5);; // Retrieve data from the database
         $candidatures = $query->get();
-        return view('condidature.back', ['candidature' => $candidatures]);
+        return view('condidature.back', ['candidatures' => $candidatures]);
 
    //     return view('condidature.back', compact('data'));
        
     }
 
     public function destroy($id)
+    {
+        $candidature = CandidatureModel::findOrFail($id);
+        $projet_id = $candidature->projet_id; // récupérer le projet_id avant la suppression
+        $candidature->delete();
+    
+        // Redirigez vers les candidatures du projet spécifique plutôt que vers toutes les candidatures
+        return redirect()->route('showCandidatures', ['id' => $projet_id])->with('success', 'candidature supprimée avec succès.');
+    }
+    
+public function showCandidatures($id)
 {
-    $candidatures = CandidatureModel::findOrFail($id);
-    $candidatures->delete();
-    return redirect()->route('condidature.back')->with('success', 'candidature supprimée avec succès.');
+    $candidatures = CandidatureModel::where('projet_id', $id)->get();
+    return view('condidature.back', compact('candidatures'));
 }
+
 
 }
 

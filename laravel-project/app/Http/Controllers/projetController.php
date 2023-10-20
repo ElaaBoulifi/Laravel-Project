@@ -54,15 +54,53 @@ class projetController extends Controller
         return view('projet.back', compact('data'));
        
     }
-    public function index()
+   /* public function index()
 {
     $projets = projetModel::all();
     return view('projet.list', compact('projets'));
+}*/
+public function index(Request $request)
+{
+    $projet = projetModel::query();
+
+    // Filter by date if available
+    if ($request->has('date_debut')) {
+        $projet->where('date_debut', $request->get('date_debut'));
+    }
+
+    // Sort by price if available
+    $price_order = $request->get('price_order');
+
+    if($price_order) {
+        if ($price_order == 'asc') {
+            $projet->orderBy('prix', 'asc');
+        } elseif ($price_order == 'desc') {
+            $projet->orderBy('prix', 'desc');
+        }
+    }
+    
+    
+
+    $projets = $projet->paginate(5);  // Always paginate
+    return view('projet.list', compact('projets'));
 }
+
+
 public function destroy($id)
 {
     $projets = projetModel::findOrFail($id);
     $projets->delete();
     return redirect()->route('projet.back')->with('success', 'projet supprimée avec succès.');
+}
+
+
+public function showProjects(Request $request)
+{
+    $projet = Projet::query(); // Assuming you have a Projet model
+    if($request->has('date')) {
+        $projet->where('date_debut', $request->get('date'));
+    }
+    $projets = $projet->get();
+    return view('your.view.name', compact('projets'));
 }
 }

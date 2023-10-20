@@ -180,47 +180,60 @@
     <!--====== HEADER PART ENDS ======-->
 
     <!--====== JobMate PART START ======-->
-
     <section class="post_job_area pt-80 pb-80">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-lg-10">
                     <div class="post_job_form">
-                   
-
                     <form action="{{ route('projet.store') }}" method="POST">
-        @csrf
-        <h4 class="post_job_title">Basic information</h4>
+    @csrf
+    <h4 class="post_job_title">Basic information</h4>
 
-                            <div class="single_post_job">
-            <label  class="single_post_job" for="titre">Titre :</label>
-            <input type="text" id="titre" name="titre" required>
-        </div>
-                            <div class="single_post_job">
-            <label  class="single_post_job" for="description">Description :</label>
-            <textarea id="summernote" name="description" required></textarea>
-        </div>
-        <div class="single_post_job">
-    <label for="duree">Durée :</label>
-    <input type="number" id="duree" name="duree" required>
-</div>
+    <div class="single_post_job">
+        <label for="titre">Titre :</label>
+        <input type="text" id="titre" name="titre" >
+        @error('titre')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-<div class="single_post_job">
-    <label for="date_debut">Date de début :</label>
-    <input type="date"  id="datepicker"  placeholder="yyyy-mm-dd" name="date_debut" required>
-</div>
+    <div class="single_post_job">
+        <label for="description">Description :</label>
+        <textarea id="summernote" name="description" ></textarea>
+        @error('description')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
+    <div class="single_post_job">
+        <label for="duree">Durée :</label>
+        <input type="number" id="duree" name="duree" >
+        @error('duree')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
+    <div class="single_post_job">
+        <label for="date_debut">Date de début :</label>
+        <input type="date" id="datepicker" placeholder="yyyy-mm-dd" name="date_debut" >
+        @error('date_debut')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-<div class="single_post_job">
-    <label for="prix">Prix :</label>
-    <input type="number" step="0.01" id="prix" name="prix" required>
-</div>
-        <!-- Ajoutez d'autres champs ici -->
-        <div>
-            <button type="submit">Ajouter</button>
-        </div>
-    </form>
+    <div class="single_post_job">
+        <label for="prix">Prix :</label>
+        <input type="number" step="0.01" id="prix" name="prix" >
+        @error('prix')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <div>
+        <button type="submit">Ajouter</button>
+    </div>
+</form>
+
     </div> <!-- JobMate form -->
                 </div>
          

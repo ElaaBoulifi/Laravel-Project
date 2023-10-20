@@ -177,119 +177,95 @@
             </div> <!-- container -->
         </div> <!-- page banner -->
     </header>
-
+  
     <!--====== HEADER PART ENDS ======-->
 
     <!--====== JOB LIST PART START ======-->
+    <div class="col-lg-4 col-sm-6">
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
+@if(session('warning'))
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
+@endif
+
+@if($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+    </div>
+@endif
+</div>
     <section class="job_list_area pt-80">
-        <div class="container">
-            <div class="job_list_filter">
-                <form action="#">
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="single_filter">
-                                <input type="text" placeholder="Job Keyword...">
-                            </div> <!-- single filter -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="single_filter">
-                                <select>
-                                    <option value="0">Location 01</option>
-                                    <option value="1">Location 02</option>
-                                    <option value="2">Location 03</option>
-                                    <option value="3">Location 04</option>
-                                </select>
-                            </div> <!-- single filter -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="single_filter">
-                                <select>
-                                    <option value="0">Category 01</option>
-                                    <option value="1">Category 02</option>
-                                    <option value="2">Category 03</option>
-                                    <option value="3">Category 04</option>
-                                </select>
-                            </div> <!-- single filter -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="single_filter">
-                                <button class="main-btn">submit now</button>
-                            </div> <!-- single filter -->
-                        </div>
-                    </div> <!-- row -->
-                </form>
-            </div> <!-- job list filter -->
-            <div class="job_list_main_content">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="sidebar_toggler d-lg-none">
-                            <button id="sidebarCollapse" class="sidebar_btn"> Sidebar <i class="fa fa-bars"></i></button>
-                        </div>
-                        <div id="sidebar" class="job_list_sidebar">
-                            <button id="dismiss" class="sidebar_close d-lg-none">
-                                <span></span>
-                                <span></span>
-                            </button>
-                            
-                            <div class="single_sidebar">
-                                <div class="sidebar_title">
-                                    <h4 class="title">Job Vacancy</h4>
-                                </div>
-                                <ul class="sidebar_content">
-                                    <li><a href="#">Deputy Manage <span>25</span></a></li>
-                                    <li><a href="#">Digital Accounting <span>25</span></a></li>
-                                    <li><a href="#">Freelancer <span>25</span></a></li>
-                                    <li><a href="#">Digital Accounting <span>25</span></a></li>
-                                    <li><a href="#">Digital Accounting <span>25</span></a></li>
-                                </ul>
-                            </div> <!-- single sidebar -->
+  
+    <?php 
+$titre = request()->get('titre');
+$date_debut = request()->get('date_debut');
+$price_order = request()->get('price_order');
 
-                            <div class="single_sidebar">
-                                <div class="sidebar_title">
-                                    <h4 class="title">Job Location</h4>
-                                </div>
-                                <ul class="sidebar_content">
-                                    <li><a href="#">Australia <span>25</span></a></li>
-                                    <li><a href="#">United States <span>25</span></a></li>
-                                    <li><a href="#">Japan <span>25</span></a></li>
-                                    <li><a href="#">Germany <span>25</span></a></li>
-                                    <li><a href="#">California <span>25</span></a></li>
-                                    <li><a href="#">Melbourne <span>25</span></a></li>
-                                </ul>
-                            </div> <!-- single sidebar -->
+$query = DB::table('projets'); // Assuming you're using Laravel's query builder
 
-                            <div class="single_sidebar">
-                                <div class="sidebar_title">
-                                    <h4 class="title">Job Type</h4>
-                                </div>
-                                <ul class="sidebar_content">
-                                    <li><a href="#">Freelance <span>25</span></a></li>
-                                    <li><a href="#">Full Time <span>25</span></a></li>
-                                    <li><a href="#">Internship <span>25</span></a></li>
-                                    <li><a href="#">Part Time <span>25</span></a></li>
-                                    <li><a href="#">Temporary <span>25</span></a></li>
-                                </ul>
-                            </div> <!-- single sidebar -->
-                        </div> <!-- job list sidebar -->
-                    </div>
-                    <div class="col-lg-8">
-    <div class="job_list_projects">
-        <div class="projects_top_bar d-sm-flex align-items-center justify-content-between">
-            <div class="projects_show">
-                <p>Showing 01 - 08 of 98 jobs</p>
+if($titre) {
+    $query = $query->where('titre', 'like', '%' . $titre . '%');
+}
+
+if($date_debut) {
+    $query = $query->where('date_debut', $date_debut);
+}
+
+if($price_order) {
+    if ($price_order == 'asc') {
+        $query->orderBy('prix', 'asc');
+    } elseif ($price_order == 'desc') {
+        $query->orderBy('prix', 'desc');
+    }
+}
+
+$projet = $query->get(); // Execute the query to get the results
+?>
+
+<div class="job_projects">
+<form action="{{ url()->current() }}" method="GET">
+    <div class="job_list_filter row"> 
+        <!-- Title Filter -->
+        <div class="col-lg-3 col-sm-6">
+            <div class="single_filter">
+                <input type="text" name="titre" placeholder="Search by title..." value="{{ request()->get('titre') }}">
             </div>
-            <div class="projects_select">
-                <select>
-                    <option value="0">Category 01</option>
-                    <option value="1">Category 02</option>
-                    <option value="2">Category 03</option>
-                    <option value="3">Category 04</option>
+        </div>
+
+        <!-- Date Filter -->
+        <div class="col-lg-3 col-sm-6">
+            <div class="single_filter">
+                <input type="text" id="datepicker" name="date_debut" placeholder="Select date..." value="{{ request()->get('date_debut') }}">
+            </div>
+        </div>
+
+        <!-- Price Filter -->
+        <div class="col-lg-3 col-sm-6">
+            <div class="single_filter">
+                <select name="price_order">
+                    <option value="">Trier par prix</option>
+                    <option value="asc" {{ request()->get('price_order') == 'asc' ? 'selected' : '' }}>Croissant</option>
+                    <option value="desc" {{ request()->get('price_order') == 'desc' ? 'selected' : '' }}>Décroissant</option>
                 </select>
             </div>
-        </div> <!-- projects top bar -->
-        
-        <div class="job_projects">
+        </div>
+
+        <!-- Filter Submit Button -->
+        <div class="col-lg-3 col-sm-6">
+            <div class="single_filter">
+                <button type="submit" class="main-btn">Filter</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
     <div class="row">
         <?php $count = 0; // Add this counter ?>
         @foreach($projet as $projett)
@@ -326,14 +302,13 @@
 </div> <!-- job_projects -->
 
 
-
              <!-- container -->
     </section>
 
     <!--====== JOB LIST PART ENDS ======-->
 
     <!--====== SUBSCRIBE PART START ======-->
-
+  
     <section class="subscribe_area pt-80 pb-80">
         <div class="container">
             <div class="subscribe_wrapper">
@@ -344,14 +319,20 @@
                     <div class="col-lg-8 col-md-10">
                         <div class="subscribe_content">
                             <div class="section_title text-center pb-25">
+                            <form method="POST" action="{{ route('subscribe.store') }}">
+                                       @csrf
                                 <h5 class="sub_title">Newsletter</h5>
                                 <h3 class="main_title">Subscribe Newsletter & Get Company News</h3>
                             </div> <!-- section title -->
                             <div class="subscribe_form">
-                                <input type="text" placeholder="Enter Email Address">
-                                <button class="main-btn">subscribe now</button>
+                            <input type="email" name="email" placeholder="Enter Email Address" required>
+                                <button type="submit" class="main-btn">Subscribe Now</button>
                             </div>
+                    </form>
+
                         </div> <!-- subscribe content -->
+    
+        
                     </div>
                 </div> <!-- row -->
                 <div class="subscribe_shape_2">
@@ -360,6 +341,8 @@
             </div> <!-- subscribe wrapper -->
         </div> <!-- container -->
     </section>
+
+
 
     <!--====== SUBSCRIBE PART ENDS ======-->
 

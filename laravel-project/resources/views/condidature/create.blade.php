@@ -40,37 +40,57 @@
 
         <div class="form-input">
             <label for="nom">Nom:</label>
-            <input type="text" id="nom" name="nom" required class="form-control">
+            <input type="text" id="nom" name="nom"  class="form-control">
+            @error('nom')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="form-input">
             <label for="prenom">Prenom:</label>
-            <textarea id="prenom" name="prenom" required class="form-control"></textarea>
+            <input type="text" id="prenom" name="prenom"  class="form-control">
+            @error('prenom')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="form-input">
             <label for="lettre_motivation">Lettre de Motivation:</label>
-            <textarea id="summernote" name="lettre_motivation" required class="form-control"></textarea>
-        
-</div>
-        <div class="form-input">
-            <label for="cv"> cv:</label>
-            <input type="file" name="cv">
+            <textarea id="summernote" name="lettre_motivation"  class="form-control"></textarea>
+            @error('lettre_motivation')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
+
+        <div class="form-input">
+            <label for="cv">cv:</label>
+            <input type="file" name="cv" >
+            @error('cv')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+
         <div class="form-input">
             <label for="tel">tel:</label>
-            <textarea id="tel" name="tel" required class="form-control"></textarea>
+            <input type="tel" id="tel" name="tel" pattern="^[0-9]+$"   class="form-control">
+            @error('tel')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
+
         <div class="form-input">
             <label for="email">email:</label>
-            <textarea id="email" name="email"  type="email" required class="form-control"></textarea>
+            <input type="email" id="email" name="email"  class="form-control">
+            @error('email')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
-        <input type="hidden" name="projet_id" value="{{ $projet_id }}">
 
-      
+        <input type="hidden" name="projet_id" value="{{ $projet_id }}">
 
         <button type="submit">Ajouter</button>
     </form>
 </div>
+
 
 @endsection

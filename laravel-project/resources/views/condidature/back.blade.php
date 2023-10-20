@@ -31,7 +31,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($candidature as $item)
+                                    @foreach ($candidatures as $item)
                                             <tr>
                                                 
                                                 <td>{{ $item->id }}</td>
@@ -40,9 +40,16 @@
                                                 <td>{{ $item->prenom }}</td>
                                                 <td>{{ $item->email }}</td>
                                                 <td>{{ $item->tel }}</td>
-                                                <td>{{ $item->cv }}</td>
-                                                <td>{!! html_entity_decode($item->lettre_motivation) !!}</td>
-                                          
+
+                                                <td>
+   <object  data="{{ asset('storage/uploads/cv/' . $item->cv) }}" type="application/pdf" width="200" height="300"></object>
+  <br>
+   <a href="{{ asset('storage/uploads/cv/' . $item->cv) }}" target="_blank">Voir le CV</a>
+</td>                                            
+<td>{{ strip_tags($item->lettre_motivation) }}</td>
+
+
+                                      
 
                                                 <td  style="padding: 10px;">
                                             <form method="POST" action="{{ route('candidature.destroy', $item->id) }}">
