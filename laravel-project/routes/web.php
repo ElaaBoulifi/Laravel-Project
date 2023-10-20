@@ -26,6 +26,10 @@ Route::post('/formations', 'App\Http\Controllers\FormationController@store')->na
 Route::get('/events/create','App\Http\Controllers\EventController@create');
 Route::post('/events', 'App\Http\Controllers\EventController@store')->name('events.store');
 Route::get('/events/list',[EventController::class,'list' ])->name('events.list');
+Route::get('/eventsfront', [EventController::class, 'index'])->name('events.index');
+
+
+
 
 Route::delete('/events/{events}', [EventController::class,'destroy' ])->name('events.delete');
 Route::get('/events/{events}/edit', 'App\Http\Controllers\EventController@edit')->name('events.edit');

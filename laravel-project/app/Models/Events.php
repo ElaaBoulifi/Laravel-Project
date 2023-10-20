@@ -12,4 +12,10 @@ class Events extends Model
     protected $fillable = [
         'titre','lieu','desc','image'
     ];
+
+
+    public function participants()
+    {
+        return $this->hasMany(Participate::class, 'event_id');
+    }
 }
