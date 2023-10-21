@@ -79,5 +79,5 @@
                             </div> <!-- row -->
                         </form>
 </div>
-
+@include('events.map')
 @endsection

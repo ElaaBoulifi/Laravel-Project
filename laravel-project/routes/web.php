@@ -23,6 +23,10 @@ Route::post('/formations', 'App\Http\Controllers\FormationController@store')->na
 
 Route::get('/participate/create', 'App\Http\Controllers\ParticipateController@create')->name('participate.create');
 Route::post('/participations', 'App\Http\Controllers\ParticipateController@store')->name('participate.store');
+Route::get('/map', function () {
+    return view('events.map');
+});
+
 
 
 

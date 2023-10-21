@@ -152,6 +152,7 @@
                             <li><a href="login.html">Log In</a></li>
 
                             <li><a class="main-btn" href="post-job.html">Post a job</a></li>
+       
                         </ul> <!-- navbar nav -->
                     </div>
 
@@ -191,7 +192,7 @@
     </header>
   
     <!--====== HEADER PART ENDS ======-->
-
+  
     <!--====== JOB LIST PART START ======-->
     <div class="col-lg-4 col-sm-6">
     @if(session('success'))
@@ -269,11 +270,14 @@
                     </div>
                     <div class="jobs_content">
                         <h4 class="jobs_title"><a href="job-details.html">{{$eventt->titre}}</a></h4>
-                        <p class="description">{!! html_entity_decode($eventt->desc) !!}</p>
+                        <p class="description">
+    <i class="fa fa-info-circle"></i> Description : {{$eventt->desc}}
+</p>
+
                     </div>
                     <div class="jobs_meta d-flex justify-content-between">
                         <p class="location"><i class="fa fa-map-marker"></i> Lieu: {{$eventt->lieu}} </p>
-                        <p class="time"><i class="fa fa-clock-o"></i> Freelance</p>
+                        <p class="time"><i class="fa fa-money"></i> Prix: {{$eventt->prix}}</p>
                     </div>
                     <div class="banner_btn">
                                 <a class="main-btn "href="{{ route('participate.create', ['events' => $eventt->id]) }}">Participer</a>
@@ -406,10 +410,19 @@
                 <div class="copyright_content text-center d-sm-flex justify-content-between align-items-center">
                     <a href="#" class="logo"><img src="assets/images/logo.png" alt="Logo"></a>
                     <p class="copyright">JobMate © 2024 All Right Reserved</p>
+                    
                 </div> <!-- copyright content -->
             </div> <!-- container -->
         </div> <!-- footer copyright -->
     </footer>
+    <div id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!--====== FOOTER PART ENDS ======-->
 
