@@ -270,14 +270,14 @@
                     <div class="jobs_content">
                         <h4 class="jobs_title"><a href="job-details.html">{{$eventt->titre}}</a></h4>
                         <p class="description">{!! html_entity_decode($eventt->desc) !!}</p>
-                        <p class="lieu">Lieu: {{$eventt->lieu}} $</p>
                     </div>
                     <div class="jobs_meta d-flex justify-content-between">
-                        <p class="location"><i class="fa fa-map-marker"></i> 18 Brooklyn, NY</p>
+                        <p class="location"><i class="fa fa-map-marker"></i> Lieu: {{$eventt->lieu}} </p>
                         <p class="time"><i class="fa fa-clock-o"></i> Freelance</p>
                     </div>
-                    <div class="jobs_btn">
-                    </div>
+                    <div class="banner_btn">
+                                <a class="main-btn "href="{{ route('participate.create', ['events' => $eventt->id]) }}">Participer</a>
+                            </div> <!-- banner btn -->
                 </div> <!-- single_jobs -->
             </div> <!-- col-sm-3 -->
 

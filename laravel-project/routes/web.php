@@ -21,6 +21,11 @@ Route::get('/','App\Http\Controllers\FormationController@getall')->name('share.h
 Route::get('/formations/create','App\Http\Controllers\FormationController@create');
 Route::post('/formations', 'App\Http\Controllers\FormationController@store')->name('formations.store');
 
+Route::get('/participate/create', 'App\Http\Controllers\ParticipateController@create')->name('participate.create');
+Route::post('/participations', 'App\Http\Controllers\ParticipateController@store')->name('participate.store');
+
+
+
 
 
 Route::get('/events/create','App\Http\Controllers\EventController@create');

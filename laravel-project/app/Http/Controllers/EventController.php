@@ -40,6 +40,8 @@ class EventController extends Controller
 
         return redirect()->route('events.list')->with('success', 'event ajouté avec succès.');
 
+
+        
     }
 
     public function getall()
