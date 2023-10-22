@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CandidatureModel;  // Assurez-vous que ce chemin est correct
 use App\Models\projetModel;
+use App\Notifications\CandidatureReceived;
+use Illuminate\Support\Facades\Notification;
 
 class CandidatureController extends Controller
 {
@@ -26,15 +28,23 @@ class CandidatureController extends Controller
             'projet_id' => 'required|exists:projets,id', 
             'lettre_motivation' => 'required|string',    
         ]);
+    
         if ($request->hasFile('cv')) {
             $cv = $request->file('cv');
             $cvName = time() . '.' . $cv->getClientOriginalExtension();
-            $cv->storeAs('uploads/cv/', $cvName, 'public');  // This will store the CV in `storage/app/public/uploads/cv/`
-            $data['cv'] = $cvName;  // This will store the filename in the database
+            $cv->storeAs('uploads/cv/', $cvName, 'public');
+            $data['cv'] = $cvName;
         }
-        CandidatureModel::create($data);  // Utilisez la notation CamelCase pour le nom de la classe
-       return view('condidature.list');
+    
+        $candidature = CandidatureModel::create($data);
+    
+        // Send the notification to the email
+        Notification::route('mail', $data['email'])
+                    ->notify(new CandidatureReceived());
+    
+        return view('condidature.list');
     }
+    
     public function list(Request $request)
     {
         $query = CandidatureModel::query();
