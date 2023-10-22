@@ -32,7 +32,7 @@
                                 <ul class="sub-menu">
                                     <li><a href="browse-categories.html">Browse Categories</a></li>
                                     <li><a href="bookmarked.html">Bookmarked</a></li>
-                                    <li><a href="{{ route('freelancer-resumes.create') }}">Add Resume</a></li>
+                                    <li><a href="">Add Resume</a></li>
                                     <li><a href="manage-resume.html">Manage Resumes</a></li>
                                     <li><a href="job-alerts.html">Job Alerts</a></li>
                                 </ul>
