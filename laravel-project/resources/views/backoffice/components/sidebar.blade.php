@@ -23,7 +23,7 @@
         </ul>
       </li><!-- End Components Nav -->
       <li class="nav-item">
-        <a class="nav-link" href="/reclamations/list">
+        <a class="nav-link" href="/reclamationslist">
           <i class="bi bi-menu-button-wide"></i><span>Réclamations</span>
         </a>
       </li>

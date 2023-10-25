@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reclamation', function (Blueprint $table) {
+        Schema::create('reclamations', function (Blueprint $table) {
             $table->id(); // Colonne d'ID auto-incrémentée
             $table->string('sujet');
             $table->text('description');
@@ -33,8 +33,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reclamation');
-        Schema::table('reclamation', function (Blueprint $table) {
+        Schema::dropIfExists('reclamations');
+        Schema::table('reclamations', function (Blueprint $table) {
             $table->dropColumn('etat');
         });
 

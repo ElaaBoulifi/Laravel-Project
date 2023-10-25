@@ -13,35 +13,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/png">
 
     <!--====== Slick CSS ======-->
-    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
 
     <!--====== Summer Note CSS ======-->
-    <link rel="stylesheet" href="assets/css/summernote.css">
-    <link rel="stylesheet" href="assets/css/summernote-bs4.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/summernote.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets/css/summernote-bs4.css') }}">
 
     <!--====== Date Picker CSS ======-->
-    <link rel="stylesheet" href="assets/css/gijgo.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/gijgo.min.css') }}">
 
     <!--====== Flaticon CSS ======-->
-    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
 
     <!--====== Font Awesome CSS ======-->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }} ">
 
     <!--====== Nice Select CSS ======-->
-    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
 
     <!--====== Bootstrap CSS ======-->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
     <!--====== Default CSS ======-->
-    <link rel="stylesheet" href="assets/css/default.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/default.css') }}">
 
     <!--====== Style CSS ======-->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
 
 
@@ -53,7 +53,7 @@
         <div class="header-navbar">
             <div class="container">
                 <nav class="navbar navbar-expand-lg">
-                    <a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="index.html"><img src="{{asset('assets/images/logo.png')}}" alt="Logo"></a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="toggler-icon"></span>
@@ -134,4 +134,31 @@
 
        
     </header>
+    <script src="{{ asset('assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/modernizr-3.7.1.min.js') }}"></script>
+
+    <!--====== Bootstrap js ======-->
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+
+    <!--====== Slick js ======-->
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+
+    <!--====== Nice Select js ======-->
+    <script src="{{ asset('assets/js/jquery.nice-select.min.js') }}"></script>
+
+    <!--====== Counter Up js ======-->
+    <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.counterup.js') }}"></script>
+
+    <!--====== Summer Note js ======-->
+    <script src="{{ asset('assets/js/summernote.min.js') }}"></script>
+    <script src="{{ asset('assets/js/summernote-bs4.min.js') }}"></script>
+
+    <!--====== Date Picker js ======-->
+    <script src="{{ asset('assets/js/gijgo.min.js') }}"></script>
+
+    <!--====== Main js ======-->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+
 </body>

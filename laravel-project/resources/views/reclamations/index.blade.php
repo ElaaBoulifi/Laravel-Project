@@ -36,7 +36,6 @@
                                 </thead>
                                 <tbody>
                                 @foreach ($reclamations as $item)
-
                                     <tr>
                                         <td class="name">
                                             <div class="job_alert_name">
@@ -44,7 +43,7 @@
                                             </div>
                                         </td>
                                         <td  style="padding: 10px;" class="keywords">
-                                            <textarea disabled cols="20" rows="10">{{$item->description}}</textarea> 
+                                            <textarea disabled cols="20" rows="7">{{$item->description}}</textarea> 
                                         </td>
                                         <td class="name">
                                             <p ><i class="fa fa-clock-o"></i> {{$item->date_soumission}}</p>
@@ -53,11 +52,19 @@
                                             <p>{{$item->categorie}}</p>
                                         </td>
                                         <td class="frequency">
-                                            <p>{{$item->evaluation}}</p>
+                                            @if ($item->evaluation == 1)
+                                                <p>Basse</p>
+                                            @elseif ($item->evaluation == 2)
+                                                <p>Moyenne</p>
+                                            @elseif ($item->evaluation == 3)
+                                                <p>Haute évaluation</p>
+                                            @else
+                                                <p>Évaluation très haute</p>
+                                            @endif                            
                                         </td>
                                         <td class="contract">
                                           @if ($item->etat === 'traité')
-                                              <p class="time time_color-1">{{ $item->etat }}</p>
+                                              <p class="time time_color-2">{{ $item->etat }}</p>
                                           @elseif ($item->etat === 'en cours de traitement')
                                               <p class="time time_color-1">{{ $item->etat }}</p>
                                           @else
@@ -66,6 +73,14 @@
                                         </td>
                                         <td  style="padding: 10px;">
                                         <img src="{{ asset('uploads/' . $item->piece_jointe) }}" alt="Image de la pièce jointe">
+                                        </td>
+                                        <td>
+                                            @if ($item->etat === 'traité')
+                                                @if ($item->reponse) <!-- Vérifiez si la réclamation a une réponse -->
+
+                                                    <a href="{{ route('reponses.showFront', ['reponse' => $item->reponse->id]) }}" class="btn btn-primary">Réponse</a>
+                                                @endif
+                                            @endif
                                         </td>
                                         <td  style="padding: 10px;">
                                             <form method="POST" action="{{ route('reclamations.destroy', $item->id) }}">

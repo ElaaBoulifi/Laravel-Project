@@ -10,9 +10,6 @@
                             <div class="content">
                                 <h3 class="page_title">Réclamations</h3>
                             </div> <!-- content -->
-                            <div class="banner_btn">
-                                <a class="main-btn " href="#">75K JOBS</a>
-                            </div> <!-- banner btn -->
                         </div> <!-- banner content -->
                     </div>
                 </div> <!-- row -->
@@ -33,7 +30,7 @@
                                 <div class="col-md-12">
                                     <div class="single_form">
                                         <input id="sujet" name="sujet" type="text" placeholder="Sujet">
-                                    </div> <!-- single form -->
+                                    </div>
                                 </div>
                                 <div class="col-md-12">
                                   <div class="single_form">

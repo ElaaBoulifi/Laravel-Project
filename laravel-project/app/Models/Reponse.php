@@ -8,18 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Reponse extends Model
 {
     use HasFactory;
-    protected $table = 'reponse';
+    protected $table = 'reponses';
     protected $fillable = [
         'reclamation_id', 
-        'content', // Contenu de la réponse
-        'response_date', // Date de la réponse
-        'response_status', // État de la réponse
+        'contenu', // Contenu de la réponse
+        'date_reponse', // Date de la réponse
         'piece_jointe', // Pièces jointes de la réponse
     ];
 
     public function reclamation()
     {
-        return $this->belongsTo(Reclamation::class);
+        return $this->belongsTo(Reclamation::class, 'reclamation_id');
     }
+    
 
 }
