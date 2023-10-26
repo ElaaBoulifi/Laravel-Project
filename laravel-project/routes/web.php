@@ -41,11 +41,10 @@ Route::put('/freelancers/{freelancer}/update', [FreelancerController::class,'upd
 
 Route::get('/','App\Http\Controllers\FormationController@getall')->name('share.home');
 
-
-Route::get('/freelancer-resumes', [FreelancerResumeController::class, 'index']);
-Route::get('/freelancer-resumes/create', [FreelancerResumeController::class, 'create']);
-Route::post('/freelancer-resumes', [FreelancerResumeController::class, 'store']);
-Route::get('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'show']);
-Route::get('/freelancer-resumes/{id}/edit', [FreelancerResumeController::class, 'edit']);
-Route::put('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'update']);
-Route::delete('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'destroy']);
+Route::get('/freelancer-resumes', [FreelancerResumeController::class, 'index'])->name('freelancer-resumes.index');
+Route::get('/freelancer-resumes/create', [FreelancerResumeController::class, 'create'])->name('freelancer-resumes.create');
+Route::post('/freelancer-resumes', [FreelancerResumeController::class, 'store'])->name('freelancer-resumes.store');
+Route::get('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'show'])->name('freelancer-resumes.show');
+Route::get('/freelancer-resumes/{id}/edit', [FreelancerResumeController::class, 'edit'])->name('freelancer-resumes.edit');
+Route::put('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'update'])->name('freelancer-resumes.update');
+Route::delete('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'destroy'])->name('freelancer-resumes.destroy');

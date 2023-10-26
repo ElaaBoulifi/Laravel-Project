@@ -40,8 +40,10 @@ class FreelancerController extends Controller
         $newFreelancer = FreelancerModel::create($data);
 
         session()->flash('success', 'Freelancer created successfully!, you will be redirected to the freelancers list in 3 seconds');
+ // Reflash the flashed data to keep it for subsequent requests
+ 
 
-        return view('freelancer.create');
+ return view('freelancer.create', ['oldInput' => $request->all()]);
     }
 
 
@@ -70,7 +72,6 @@ class FreelancerController extends Controller
     
 
         session()->flash('success', 'Freelancer updated successfully!, you will be redirected to the freelancers list in 3 seconds');
-
         return view('freelancer.edit',['freelancer'=>$freelancer]);
        
     }

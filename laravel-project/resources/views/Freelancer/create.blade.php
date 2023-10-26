@@ -44,14 +44,14 @@
                   <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Nom</label>
                     <div class="col-sm-10">
-                      <input type="text" name="nom" class="form-control">
+                      <input type="text" name="nom" class="form-control" value="{{ old('nom', $oldInput['nom'] ?? '') }}">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Prenom</label>
                     <div class="col-sm-10">
-                      <input type="text" name="prenom" class="form-control">
+                      <input type="text" name="prenom" class="form-control" value="{{ old('prenom', $oldInput['prenom'] ?? '') }}">
                     </div>
                   </div>
 
@@ -59,7 +59,7 @@
                   <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Specialité</label>
                     <div class="col-sm-10">
-                      <input type="text" name="specialite" class="form-control">
+                      <input type="text" name="specialite" class="form-control" value="{{ old('specialite', $oldInput['specialite'] ?? '') }}">
                     </div>
                   </div>
 
@@ -67,7 +67,7 @@
                   <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Disponibilite</label>
                     <div class="col-sm-10">
-                      <input type="text" name="disponibilite" class="form-control">
+                      <input type="text" name="disponibilite" class="form-control" value="{{ old('disponibilite', $oldInput['disponibilite'] ?? '') }}">
                     </div>
                   </div>
 
