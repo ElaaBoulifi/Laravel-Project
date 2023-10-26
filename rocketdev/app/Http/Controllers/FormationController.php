@@ -8,7 +8,7 @@ use App\Models\formationModel;
 
 class FormationController extends Controller
 {
-    
+
     public function index()
     {
         // Votre logique pour la page d'accueil (index) ici
@@ -24,8 +24,9 @@ class FormationController extends Controller
         $data = $request->validate([
             'titre' => 'required|string|max:255',
             'description' => 'required|string',
-            'duree' => 'required|string',
+            'gategorie' => 'required|string',
             'date_debut' => 'required|date',
+            'date_fin' => 'required|date',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'prix' => 'required|string'
         ]);
@@ -46,7 +47,6 @@ class FormationController extends Controller
     {
         $formations = formationModel::all();
         return view('share.home', ['formations' => $formations]);
-    
     }
 
     public function list()
@@ -73,16 +73,16 @@ class FormationController extends Controller
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images'), $imageName);
-            
+
             $formation->image = $imageName;
         }
-    
+
         // Mettez à jour les données de la formation
         $formation->update($data);
-    
+
         return redirect()->route('formations.list')->with('success', 'Formation mise à jour avec succès.');
     }
-    
+
 
     public function destroy(formationModel $formation)
     {

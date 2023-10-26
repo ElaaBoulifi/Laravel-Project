@@ -9,6 +9,7 @@ use App\Http\Controllers\CandidatureController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\ReponseController;
+use App\Http\Controllers\stripecontroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,13 +37,18 @@ Route::middleware([
 
 
 Route::get('/','App\Http\Controllers\FormationController@getall')->name('share.home');
+
+Route::get('/formations/create','App\Http\Controllers\FormationController@create')->name('formations.create');
+Route::post('/formations', 'App\Http\Controllers\FormationController@store')->name('formations.store');
 // Adjust the route naming to make it clearer
 Route::get('/candidatures/create', 'App\Http\Controllers\CandidatureController@create')->name('condidature.create');
 Route::post('/candidatures', 'App\Http\Controllers\CandidatureController@store')->name('candidature.store');
 Route::get('/candidatures', 'App\Http\Controllers\CandidatureController@getall')->name('candidature.list');
 
-Route::get('/formations/create','App\Http\Controllers\FormationController@create')->name('formations.create');
-Route::post('/formations', 'App\Http\Controllers\FormationController@store')->name('formations.store');
+Route::get('/formations/list',[FormationController::class,'list' ])->name('formations.list');
+Route::delete('/formations/{formation}', [FormationController::class,'destroy' ])->name('formations.delete');
+Route::get('/formations/{formation}/edit', 'App\Http\Controllers\FormationController@edit')->name('formations.edit');
+Route::put('/updatee/{formation}', 'App\Http\Controllers\FormationController@update')->name('formations.updatee');
 Route::get('/projets', 'App\Http\Controllers\projetController@index')->name('projet');
 Route::delete('/projets/{id}', 'App\Http\Controllers\projetController@destroy')->name('projets.destroy');
 Route::delete('/candidatures/{id}', 'App\Http\Controllers\CandidatureController@destroy')->name('candidature.destroy');
@@ -60,11 +66,15 @@ Route::get('/login1',function () {
     return view('share.login');
 })->name('share.login');
 
-Route::get('/formations/list',[FormationController::class,'list' ])->name('formations.list');
-Route::delete('/formations/{formation}', [FormationController::class,'destroy' ])->name('formations.delete');
-Route::get('/formations/{formation}/edit', 'App\Http\Controllers\FormationController@edit')->name('formations.edit');
-Route::put('/updatee/{formation}', 'App\Http\Controllers\FormationController@update')->name('formations.updatee');
+Route::delete('/inscription/{inscri}', 'App\Http\Controllers\inscriptionn@destroy' )->name('inscription.delete');
 
+Route::get('/inscription/create', 'App\Http\Controllers\inscriptionn@create')->name('inscription.create');
+Route::post('/inscriptions', 'App\Http\Controllers\inscriptionn@store')->name('inscription.store');
+Route::get('/confirmation/{id}', 'App\Http\Controllers\inscriptionn@confirm')->name('inscription.confirmation');
+Route::get('/inscription/list', 'App\Http\Controllers\inscriptionn@getall')->name('inscription.listinscri');
+
+Route::get('stripe', [stripecontroller::class, 'stripe']);
+Route::post('stripe', [stripecontroller::class, 'stripePost'])->name('stripe.post');
 Route::get('/freelancers', [FreelancerController::class,'index'])->name('Freelancer.index');
 Route::get('/freelancers/list', [FreelancerController::class,'list'])->name('Freelancer.list');
 Route::get('/freelancers/create', [FreelancerController::class,'create'])->name('Freelancer.create');

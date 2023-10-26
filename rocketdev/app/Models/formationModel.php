@@ -10,6 +10,10 @@ class formationModel extends Model
     use HasFactory;
     protected $table = 'formation';
     protected $fillable = [
-        'titre','description','duree','date_debut','image','prix'
+        'titre','description','date_debut','date_fin','image','gategorie','prix'
     ];
+    public function inscriptions()
+    {
+        return $this->hasMany(Inscription::class, 'id_formation');
+    }
 }
