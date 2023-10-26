@@ -87,7 +87,7 @@ Route::get('/candidatures/list', [CandidatureController::class,'list'])->name('c
 Route::get('/candidatures/{id}', [CandidatureController::class, 'showCandidatures'])->name('showCandidatures');
 
 Route::get('/projet','App\Http\Controllers\projetController@getall')->name('projet');
-Route::get('/create','App\Http\Controllers\projetController@create');
+Route::get('/create','App\Http\Controllers\projetController@create')->name('projet.create');
 Route::post('/projets', 'App\Http\Controllers\projetController@store')->name('projet.store');
 Route::get('/projet/list', [projetController::class,'list'])->name('projet.back');
 Route::get('/projets/{id}/candidatures', [CandidatureController::class, 'showCandidatures'])->name('projets.candidatures');

@@ -90,6 +90,10 @@
 
                             </li>
                             <li>
+                                <a href="{{ route('projet') }}">projet</a>
+
+                            </li>
+                            <li>
                                 <a href="#">Employers</a>
 
                             </li>
@@ -157,7 +161,7 @@
                                     </form>
                                 </li>
                             @endguest
-                            <li><a class="main-btn" href="post-job.html">Post a job</a></li>
+                            <li><a class="main-btn" href="{{ route('projet.create') }}">Post a job</a></li>
                         </ul> <!-- navbar nav -->
                     </div>
 
