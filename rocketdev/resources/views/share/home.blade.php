@@ -8,8 +8,8 @@
     <!--[if IE]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
-    
-   
+
+
     <!--====== PRELOADER PART START ======-->
 
     <div class="preloader">
@@ -260,26 +260,28 @@
                 <div class="col-md-7">
                     <div class="section_title pb-25">
                         <h5 class="sub_title">inscrivez vous</h5>
-                        <h3 class="main_title">Nos formations</h3>
+                        <br>
+                        <h2>Nos formations dans le developpement </h2>
                     </div> <!-- section title -->
                 </div>
                 <div class="col-md-5">
                     <div class="jobs_tabs_menu d-flex justify-content-md-end">
                         <ul class="nav" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="active" id="trending-tab" data-toggle="tab" href="#trending" role="tab" aria-controls="trending" aria-selected="true">all</a>
+                                <a class="active" id="trending-tab" data-toggle="tab" href="#web" role="tab" aria-controls="trending" aria-selected="true">Web</a>
                             </li>
                             <li class="nav-item">
-                                <a id="recent-tab" data-toggle="tab" href="#recent" role="tab" aria-controls="recent" aria-selected="false"></a>
+                                <a id="recent-tab" data-toggle="tab" href="#mobile" role="tab" aria-controls="recent" aria-selected="false">Mobile</a>
                             </li>
-                        </ul> <!-- nav -->
+                        </ul>
+                     <!-- nav -->
                     </div> <!-- jobs tabs menu -->
                 </div>
             </div> <!-- row -->
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="trending" role="tabpanel" aria-labelledby="trending-tab">
+                <div class="tab-pane fade show active" id="web" role="tabpanel" aria-labelledby="trending-tab">
                     <div class="row">
-                    @foreach($formations as $formation)
+                    @foreach($formationsweb as $formation)
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_jobs text-center mt-30">
                                 <div class="jobs_image">
@@ -294,29 +296,32 @@
                                     <p class="time"><i class="fa fa-clock-o"></i>{{$formation->date_debut}} </p>
                                 </div>
                                 <div class="jobs_btn">
-                                    <a href="job-details.html" class="main-btn main-btn-2" data-toggle="modal" data-target="#exampleModal">inscrivez vous</a>
+                                <a class="main-btn "href="{{ route('inscription.create', ['formation' => $formation->id]) }}">inscriver vous</a>
                                 </div>
                                 <!-- Button trigger modal -->
 
 <!-- Modal -->
-                </div> <!-- single jobs -->
+                     </div> <!-- single jobs -->
                         </div>
-                        
-                       
-  
+
+
+
                      <!-- Affichez d'autres attributs ici -->
                     @endforeach
                     </div> <!-- row -->
                 </div>
-       
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
-                    
+
+
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+
     <div class="modal-dialog d-flex justify-content-center">
     <br>
                     <br>
                     <br>
         <div class="modal-content w-75">
-        
+
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel3">Subscribe</h5>
                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
@@ -350,117 +355,38 @@
         </div>
     </div>
 </div>
-                <div class="tab-pane fade" id="recent" role="tabpanel" aria-labelledby="recent-tab">
+                <div class="tab-pane fade" id="mobile" role="tabpanel" aria-labelledby="recent-tab">
+
                     <div class="row">
+                    @foreach($formationsmobile as $formation)
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_jobs text-center mt-30">
                                 <div class="jobs_image">
-                                    <img src="assets/images/jobs-6.jpg" alt="jobs">
+                                <img src="{{ asset('images/' . $formation->image) }}" width="100" height="100" alt="Image"></td>
                                 </div>
                                 <div class="jobs_content">
-                                    <h4 class="jobs_title"><a href="job-details.html">UX Architecht</a></h4>
-                                    <p class="sub_title">Hooli</p>
+                                    <h4 class="jobs_title"><a href="job-details.html">{{$formation->titre}}</a></h4>
+                                    <p class="sub_title">{{$formation->description}}</p>
                                 </div>
                                 <div class="jobs_meta d-flex justify-content-between">
-                                    <p class="location"><i class="fa fa-map-marker"></i> 18 Brooklyn, NY</p>
-                                    <p class="time"><i class="fa fa-clock-o"></i> Full time</p>
+                                    <p class="location"><i class="fa fa-money"></i> {{$formation->prix}}</p>
+                                    <p class="time"><i class="fa fa-clock-o"></i>{{$formation->date_debut}} </p>
                                 </div>
                                 <div class="jobs_btn">
-                                    <a href="job-details.html" class="main-btn main-btn-2">apply now</a>
+                                <a class="main-btn "href="{{ route('inscription.create', ['formation' => $formation->id]) }}">inscriver vous</a>
                                 </div>
-                            </div> <!-- single jobs -->
+                                <!-- Button trigger modal -->
+
+<!-- Modal -->
+                     </div> <!-- single jobs -->
                         </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_jobs text-center mt-30">
-                                <div class="jobs_image">
-                                    <img src="assets/images/jobs-5.jpg" alt="jobs">
-                                </div>
-                                <div class="jobs_content">
-                                    <h4 class="jobs_title"><a href="job-details.html">Digital Marketer</a></h4>
-                                    <p class="sub_title">Twitter</p>
-                                </div>
-                                <div class="jobs_meta d-flex justify-content-between">
-                                    <p class="location"><i class="fa fa-map-marker"></i> 18 Brooklyn, NY</p>
-                                    <p class="time"><i class="fa fa-clock-o"></i> Full time</p>
-                                </div>
-                                <div class="jobs_btn">
-                                    <a href="job-details.html" class="main-btn main-btn-2">apply now</a>
-                                </div>
-                            </div> <!-- single jobs -->
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_jobs text-center mt-30">
-                                <div class="jobs_image">
-                                    <img src="assets/images/jobs-4.jpg" alt="jobs">
-                                </div>
-                                <div class="jobs_content">
-                                    <h4 class="jobs_title"><a href="job-details.html">Python Developer</a></h4>
-                                    <p class="sub_title">Hooli</p>
-                                </div>
-                                <div class="jobs_meta d-flex justify-content-between">
-                                    <p class="location"><i class="fa fa-map-marker"></i> 18 Brooklyn, NY</p>
-                                    <p class="time"><i class="fa fa-clock-o"></i> Full time</p>
-                                </div>
-                                <div class="jobs_btn">
-                                    <a href="job-details.html" class="main-btn main-btn-2">apply now</a>
-                                </div>
-                            </div> <!-- single jobs -->
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_jobs text-center mt-30">
-                                <div class="jobs_image">
-                                    <img src="assets/images/jobs-3.jpg" alt="jobs">
-                                </div>
-                                <div class="jobs_content">
-                                    <h4 class="jobs_title"><a href="job-details.html">Graphic Designer</a></h4>
-                                    <p class="sub_title">MixLabs</p>
-                                </div>
-                                <div class="jobs_meta d-flex justify-content-between">
-                                    <p class="location"><i class="fa fa-map-marker"></i> 18 Brooklyn, NY</p>
-                                    <p class="time"><i class="fa fa-clock-o"></i> Full time</p>
-                                </div>
-                                <div class="jobs_btn">
-                                    <a href="job-details.html" class="main-btn main-btn-2">apply now</a>
-                                </div>
-                            </div> <!-- single jobs -->
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_jobs text-center mt-30">
-                                <div class="jobs_image">
-                                    <img src="assets/images/jobs-2.jpg" alt="jobs">
-                                </div>
-                                <div class="jobs_content">
-                                    <h4 class="jobs_title"><a href="job-details.html">UI Designer</a></h4>
-                                    <p class="sub_title">Asus</p>
-                                </div>
-                                <div class="jobs_meta d-flex justify-content-between">
-                                    <p class="location"><i class="fa fa-map-marker"></i> 18 Brooklyn, NY</p>
-                                    <p class="time"><i class="fa fa-clock-o"></i> Full time</p>
-                                </div>
-                                <div class="jobs_btn">
-                                    <a href="job-details.html" class="main-btn main-btn-2">apply now</a>
-                                </div>
-                            </div> <!-- single jobs -->
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_jobs text-center mt-30">
-                                <div class="jobs_image">
-                                    <img src="assets/images/jobs-1.jpg" alt="jobs">
-                                </div>
-                                <div class="jobs_content">
-                                    <h4 class="jobs_title"><a href="job-details.html">Wordpress Developer</a></h4>
-                                    <p class="sub_title">PiedPiper</p>
-                                </div>
-                                <div class="jobs_meta d-flex justify-content-between">
-                                    <p class="location"><i class="fa fa-map-marker"></i> 18 Brooklyn, NY</p>
-                                    <p class="time"><i class="fa fa-clock-o"></i> Full time</p>
-                                </div>
-                                <div class="jobs_btn">
-                                    <a href="job-details.html" class="main-btn main-btn-2">apply now</a>
-                                </div>
-                            </div> <!-- single jobs -->
-                        </div>
+
+
+
+                     <!-- Affichez d'autres attributs ici -->
+                    @endforeach
                     </div> <!-- row -->
+                </div>
                 </div>
             </div> <!-- tab content -->
         </div> <!-- container -->
@@ -486,8 +412,8 @@
 
             <a class="main-btn" href="https://rebrand.ly/jobmate-gg" rel="nofollow">Purchase Now</a>
             </br>
-                
-            </div>  
+
+            </div>
         </div> <!-- container -->
     </section>
 
@@ -522,9 +448,9 @@
             </div> <!-- subscribe wrapper -->
         </div> <!-- container -->
     </section>
- 
+
 </div>
-            
+
     <!--====== SUBSCRIBE PART ENDS ======-->
 
     <!--====== FOOTER PART START ======-->
@@ -546,7 +472,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-">
-                    
+
                 </div>
             </div>
         </div>

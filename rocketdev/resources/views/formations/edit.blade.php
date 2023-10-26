@@ -45,9 +45,14 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label for="inputText" class="col-sm-2 col-form-label">Durée</label>
+        <label for="inputText" class="col-sm-2 col-form-label">Categorie</label>
         <div class="col-sm-10">
-            <input type="text" name="duree" class="form-control" value="{{ $formation->duree }}">
+        <select name="gategorie" class="form-control">
+                                    <option value="web">web</option>
+                                    <option value="mobile">mobile</option>
+
+            <!-- Ajoutez autant d'options que nécessaire -->
+        </select>
         </div>
     </div>
     <div class="row mb-3">
@@ -56,6 +61,12 @@
             <input type="date" name="date_debut" class="form-control" value="{{ $formation->date_debut }}">
         </div>
     </div>
+    <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Date fin</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="date_fin" class="form-control" value="{{ $formation->date_fin }}">
+                            </div>
+                        </div>
     <div class="row mb-3">
         <label for="inputText" class="col-sm-2 col-form-label">Prix</label>
         <div class="col-sm-10">
@@ -69,9 +80,9 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Bouton de soumission</label>
+        <label class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Soumettre le formulaire</button>
+            <button type="submit" class="btn btn-primary">modiffier</button>
         </div>
     </div>
 </form><!-- Fin des éléments généraux du formulaire -->

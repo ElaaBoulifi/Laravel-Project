@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Create Freelancer</h5>
+                    <h5 class="card-title">Create Formation</h5>
                     <div>
                         @if($errors->any())
                             @foreach($errors->all() as $error)
@@ -44,15 +44,26 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Durée</label>
+                            <label for="inputText" class="col-sm-2 col-form-label">categorie</label>
                             <div class="col-sm-10">
-                                <input type="text" name="duree" class="form-control">
+
+                              <select name="gategorie" class="form-control">
+                                    <option value="web">web</option>
+                                    <option value="mobile">mobile</option>
+
+                               </select>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Date de début</label>
                             <div class="col-sm-10">
                                 <input type="date" name="date_debut" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Date fin</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="date_fin" class="form-control">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -68,9 +79,9 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Bouton de soumission</label>
+                            <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Soumettre le formulaire</button>
+                                <button type="submit" class="btn btn-primary">ajouter</button>
                             </div>
                         </div>
                     </form><!-- Fin des éléments généraux du formulaire -->
