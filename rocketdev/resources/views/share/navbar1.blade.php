@@ -56,9 +56,22 @@
                                 </ul>
                             </li>
                             <li><a href="contact.html">Contact</a></li>
-                            <li><a href="login.html">Log In</a></li>
-
-                            <li><a class="main-btn" href="post-job.html">Post a job</a></li>
+                            @guest
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/login">Login</a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <a class="nav-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                            Logout
+                                        </a>
+                                    </form>
+                                </li>
+                            @endguest
+                                                    <li><a class="main-btn" href="post-job.html">Post a job</a></li>
                         </ul> <!-- navbar nav -->
                     </div> 
                     
@@ -75,3 +88,5 @@
                         </div>
                     </div> <!-- language -->
                 </nav>
+
+                

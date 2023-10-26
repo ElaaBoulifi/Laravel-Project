@@ -19,8 +19,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="profile_job_alert mt-50">
-
-                        <h4 class="profile_job_alert_title mb-20">Liste des réclamations</h4>
+                        <h4 class="profile_job_alert_title mb-20">Mes réclamations</h4>
 
                         <div class="job_alert_content table-responsive">
                             <table class="table">
@@ -38,6 +37,7 @@
                                 <tbody>
                                 @foreach ($reclamations as $item)
                                     <tr>
+
                                         <td class="name">
                                             <div class="job_alert_name">
                                                 <h5 class="job_name">{{$item->sujet}}</h5>

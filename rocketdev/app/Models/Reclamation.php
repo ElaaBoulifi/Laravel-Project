@@ -10,7 +10,7 @@ class Reclamation extends Model
     use HasFactory;
     protected $table = 'reclamations';
     protected $fillable = [
-        'sujet', 'description', 'date_soumission','categorie','evaluation','piece_jointe', 'etat',
+        'user_id', 'sujet', 'description', 'date_soumission','categorie','evaluation','piece_jointe', 'etat',
     ];
 
     public function reponse()
@@ -18,5 +18,9 @@ class Reclamation extends Model
         return $this->hasOne(Reponse::class);
     }
 
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
 }

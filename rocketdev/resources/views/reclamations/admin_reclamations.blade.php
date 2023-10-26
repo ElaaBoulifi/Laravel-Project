@@ -108,7 +108,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            
+                                            <th>Nom</th>
                                             <th>Sujet</th>
                                             <th>Description</th>
                                             <th>Date</th>
@@ -123,6 +123,7 @@
                                     <tbody>
                                     @foreach ($reclamations as $item)
                                             <tr>
+                                                <td>{{ $item->user->name }}</td>
                                                 <td>{{ $item->sujet }}</td>
                                                 <td><textarea cols="25" rows="5" disabled>{{ $item->description }}</textarea></td>
                                                 <td>{{ $item->date_soumission }} </td>

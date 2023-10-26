@@ -5,15 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reclamation;
 use DB;
-
+use Illuminate\Support\Facades\Auth;
 class ReclamationController extends Controller
 {
 
-    public function index(){
-        $reclamations = Reclamation::all();
-
-        return view('reclamations.index', ['reclamations' => $reclamations]);
+    public function index()
+    {
+        $user = Auth::user(); // Get the authenticated user
+    
+        if ($user) {
+            // If a user is authenticated, fetch their reclamations
+            $reclamations = Reclamation::where('user_id', $user->id)->get();
+        } else {
+            // Handle the case where no user is authenticated
+            $reclamations = collect(); // An empty collection
+        }
+    
+        return view('reclamations.index', compact('reclamations'));
     }
+    
 
     public function create()
     {
@@ -33,7 +43,14 @@ class ReclamationController extends Controller
         
         $data['date_soumission'] = now();
         $data['etat'] = 'en cours de traitement';
-
+        if (auth()->check()) {
+            $data['user_id'] = auth()->user()->id;
+            $data['user_name'] = auth()->user()->name;
+        } else {
+            // Handle the case where there's no authenticated user (e.g., show an error message).
+            // You might also want to set default values for 'user_id' and 'user_name'.
+        }
+        
         if ($request->hasFile('piece_jointe')) {
             $file = $request->file('piece_jointe');
             $fileName = time() . '_' . $file->getClientOriginalName();
@@ -45,6 +62,7 @@ class ReclamationController extends Controller
         
     
         $reclamation = new Reclamation($data);
+        $reclamation->user_id = Auth::user()->id; // Associate the authenticated user
         $reclamation->save();
 
         return redirect()->route('reclamations.index')->with('success', 'Réclamation soumise avec succès.');
@@ -152,7 +170,13 @@ class ReclamationController extends Controller
                 return $monthNames[$month - 1]; 
             });
                 $data = $data->pluck('count');
-    
+                if (Auth()->check()) {
+                    // User is logged in.
+                    $user = Auth()->user(); // Get the authenticated user.
+                } else {
+                    // User is not logged in.
+                }
+                
         return view('reclamations.charts', compact('labels', 'data'));
     }
     

@@ -121,12 +121,64 @@
                                 
                                 <ul class="sub-menu">
                                     <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
+
                                 </ul>
                             </li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li class="active"><a href="{{ route('share.login') }}">Log In</a></li>
-                            
+                            <style>
+    .login-prompt {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 9999;
+    }
+
+    .login-prompt-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+
+    .login-prompt-button {
+        margin-top: 10px;
+    }
+</style>
+
+                            @guest
+                            <div class="login-prompt">
+                                <div class="login-prompt-content">
+                                    <p>Please log in to access this content.</p>
+                                    <a href="{{ route('login') }}" class="btn btn-primary login-prompt-button">Log In</a>
+                                    <button class="btn btn-secondary login-prompt-button" id="close-login-prompt">Close</button>
+                                </div>
+                            </div>
+                            @endguest
+                            <li><a href="{{ route('reclamations.create') }}">Réclamer</a></li>
+                          
+                            @guest
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/login">Login</a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <a class="nav-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                            Logout
+                                        </a>
+                                    </form>
+                                </li>
+                            @endguest                            
                             <li><a class="main-btn" href="post-job.html">Post a job</a></li>
                         </ul> <!-- navbar nav -->
                     </div>
@@ -165,4 +217,9 @@
             </div> <!-- container -->
         </div> <!-- page banner -->
     </header>
+    <script>
+                                document.getElementById('close-login-prompt').addEventListener('click', function () {
+                                    document.querySelector('.login-prompt').style.display = 'none';
+                                });
+                            </script>
 </body>

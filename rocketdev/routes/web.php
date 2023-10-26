@@ -9,6 +9,7 @@ use App\Http\Controllers\CandidatureController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\ReponseController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
