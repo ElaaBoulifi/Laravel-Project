@@ -42,7 +42,7 @@
                               <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
                            </div>
                            <div class='col-xs-12 col-md-4 form-group expiration required'>
-                              <label class='control-label'>Expiration Month</label>
+                              <label class='control-label'>Expiration</label>
                               <input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
                            </div>
                            <div class='col-xs-12 col-md-4 form-group expiration required'>
