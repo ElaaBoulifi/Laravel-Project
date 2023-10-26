@@ -156,14 +156,15 @@
                             @guest
                             <div class="login-prompt">
                                 <div class="login-prompt-content">
-                                    <p>Please log in to access this content.</p>
+                                    <p>Please log in to access this content..</p>
                                     <a href="{{ route('login') }}" class="btn btn-primary login-prompt-button">Log In</a>
                                     <button class="btn btn-secondary login-prompt-button" id="close-login-prompt">Close</button>
                                 </div>
                             </div>
-                            @endguest
+                            @else
                             <li><a href="{{ route('reclamations.create') }}">Réclamer</a></li>
-                          
+                            @endguest
+
                             @guest
                                 <li class="nav-item">
                                     <a class="nav-link" href="/login">Login</a>

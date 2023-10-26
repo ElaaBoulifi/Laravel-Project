@@ -11,10 +11,9 @@ class ReclamationController extends Controller
 
     public function index()
     {
-        $user = Auth::user(); // Get the authenticated user
+        $user = Auth::user(); 
     
         if ($user) {
-            // If a user is authenticated, fetch their reclamations
             $reclamations = Reclamation::where('user_id', $user->id)->get();
         } else {
             // Handle the case where no user is authenticated

@@ -10,7 +10,8 @@ class Reclamation extends Model
     use HasFactory;
     protected $table = 'reclamations';
     protected $fillable = [
-        'user_id', 'sujet', 'description', 'date_soumission','categorie','evaluation','piece_jointe', 'etat',
+        'user_id',
+         'sujet', 'description', 'date_soumission','categorie','evaluation','piece_jointe', 'etat',
     ];
 
     public function reponse()

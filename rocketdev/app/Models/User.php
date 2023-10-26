@@ -61,7 +61,7 @@ class User extends Authenticatable
 
     public function reclamations()
     {
-        return $this->hasMany(Reclamation::class);
+        return $this->hasMany(Reclamation::class); // rec
     }
 
 }

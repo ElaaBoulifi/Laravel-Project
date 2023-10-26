@@ -1,8 +1,6 @@
 @extends('backoffice.main')
 @section('content')
 <style>
-/* styles.css */
-/* styles.css */
 .chart-container {
     width: 60%;
     margin: 100px auto; /* Add margin to create space below the navbar */

@@ -55,7 +55,7 @@
                                     <li><a href="blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="contact.html">Contactt</a></li>
                             @guest
                                 <li class="nav-item">
                                     <a class="nav-link" href="/login">Login</a>
