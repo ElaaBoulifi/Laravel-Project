@@ -10,61 +10,48 @@
                     <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="active"><a href="{{ route('share.home') }}">Home</a></li>
+                           
+                           
                             <li>
-                                <a href="#">Page</a>
-
+                                <a href="{{ route('projet') }}">Posutler pour un projet</a>
 
                             </li>
-                            <li>
-                                <a href="#">Candidates</a>
-
-
-                            </li>
-                            <li>
-                                <a href="{{ route('projet') }}">projet</a>
-
-                            </li>
-                            <li>
-                                <a href="#">Employers</a>
-
-                            </li>
-                            <li>
-                                <a href="blog.html">Blog</a>
-
-
-                            </li>
-                            <li><a href="contact.html">Contactt</a></li>
+                          
+                          
                             @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/login">Login</a>
-                                </li>
+                            <div class="login-prompt">
+                                <div class="login-prompt-content">
+                                    <p>Please log in to access this content..</p>
+                                    <a href="{{ route('login') }}" class="btn btn-primary login-prompt-button">Log In</a>
+                                    <button class="btn btn-secondary login-prompt-button" id="close-login-prompt">Close</button>
+                                </div>
+                            </div>
                             @else
-                                <li class="nav-item">
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <a class="nav-link" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); this.closest('form').submit();">
-                                            Logout
-                                        </a>
-                                    </form>
-                                </li>
+                            <li><a href="{{ route('reclamations.create') }}">Réclamer</a></li>
                             @endguest
+
+                           
+                          
                             <li><a class="main-btn" href="{{ route('projet.create') }}">Post a job</a></li>
+                            @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a class="nav-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                        Logout
+                                    </a>
+                                </form>
+                            </li>
+                        @endguest
                         </ul> <!-- navbar nav -->
                     </div>
 
-                    <div class="language">
-                        <div class="dropdown">
-                            <button class="language_btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">en </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a href="#">English</a>
-                                <a href="#">Deutsch</a>
-                                <a href="#">Русский</a>
-                                <a href="#">Español</a>
-                                <a href="#">Français</a>
-                            </div>
-                        </div>
-                    </div> <!-- language -->
+                 
                 </nav>
 
                 
