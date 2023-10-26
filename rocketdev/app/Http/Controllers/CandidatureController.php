@@ -38,12 +38,12 @@ class CandidatureController extends Controller
     
         $candidature = CandidatureModel::create($data);
     
-        // Send the notification to the email
-        Notification::route('mail', $data['email'])
-                    ->notify(new CandidatureReceived());
+        Notification::route('mail', $data['email'])->notify(new CandidatureReceived());
     
         return view('condidature.list');
     }
+    
+
     
     public function list(Request $request)
     {

@@ -42,10 +42,12 @@
                                                 <td>{{ $item->tel }}</td>
 
                                                 <td>
-   <object  data="{{ asset('storage/uploads/cv/' . $item->cv) }}" type="application/pdf" width="200" height="300"></object>
-  <br>
+                                                <td>
+   <object data="{{ asset('storage/uploads/cv/' . $item->cv) }}" type="application/pdf" width="200" height="300"></object>
+   <br>
    <a href="{{ asset('storage/uploads/cv/' . $item->cv) }}" target="_blank">Voir le CV</a>
-</td>                                            
+</td>
+                                          
 <td>{{ strip_tags($item->lettre_motivation) }}</td>
 
 
