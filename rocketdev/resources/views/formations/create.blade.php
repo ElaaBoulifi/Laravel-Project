@@ -45,7 +45,13 @@
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">categorie</label>
-                                <input type="text" name="gategorie" class="form-control">
+                            <div class="col-sm-10">
+
+                              <select name="gategorie" class="form-control">
+                                    <option value="web">web</option>
+                                    <option value="mobile">mobile</option>
+
+                               </select>
                             </div>
                         </div>
                         <div class="row mb-3">

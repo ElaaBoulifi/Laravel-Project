@@ -12,7 +12,7 @@
                <div class="panel panel-default credit-card-box">
                   <div class="panel-heading" >
                      <div class="row">
-                        <h3>Payment Details</h3>
+                        <h3>continuez votre inscription</h3>
 
                      </div>
                   </div>
