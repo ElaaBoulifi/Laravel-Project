@@ -46,6 +46,7 @@ class FormationController extends Controller
     {
         $formations = formationModel::all();
         return view('share.home', ['formations' => $formations]);
+    
     }
 
     public function list()
