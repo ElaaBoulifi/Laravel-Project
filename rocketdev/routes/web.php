@@ -7,6 +7,8 @@ use App\Http\Controllers\FreelancerResumeController;
 use App\Http\Controllers\projetController;
 use App\Http\Controllers\CandidatureController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\ReclamationController;
+use App\Http\Controllers\ReponseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,3 +82,22 @@ Route::get('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'show
 Route::get('/freelancer-resumes/{id}/edit', [FreelancerResumeController::class, 'edit'])->name('freelancer-resumes.edit');
 Route::put('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'update'])->name('freelancer-resumes.update');
 Route::delete('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'destroy'])->name('freelancer-resumes.destroy');
+
+// ---------------------------- RECLAMATIONS ROUTES ---------------------------- //
+
+
+Route::get('/reclamation', [ReclamationController::class,'create'])->name('reclamations.create');
+Route::post('/reclamations', [ReclamationController::class,'store'])->name('reclamations.store');
+Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations.index');
+Route::delete('/reclamations/{id}', 'App\Http\Controllers\ReclamationController@destroy')->name('reclamations.destroy');
+Route::delete('/reclamationss/{id}', 'App\Http\Controllers\ReclamationController@destroyy')->name('reclamations.destroyy');
+
+Route::get('/reclamationslist', [ReclamationController::class, 'indexNonTraitees'])->name('reclamations.nontraitees');
+Route::get('/reclamations/traitees', [ReclamationController::class, 'admin_reclamations'])->name('reclamations.admin_reclamations');
+Route::get('/tri-reclamations', 'App\Http\Controllers\ReclamationController@trierReclamations')->name('reclamations.tri-reclamations');
+
+Route::get('/reponse', [ReponseController::class,'create'])->name('reponses.create');
+Route::post('/reponses', [ReponseController::class,'store'])->name('reponses.store');
+Route::get('/reponses/{reponse}', [ReponseController::class, 'show'])->name('reponses.show');
+Route::get('/reponses/{reponse}/client', [ReponseController::class, 'showFront'])->name('reponses.showFront');
+Route::get('/chart', [ReclamationController::class, 'charts'])->name('reclamations.charts');
