@@ -39,7 +39,7 @@
 
 <div class="form-input">
     <label for="nom">Nom:</label>
-    <input type="text" id="nom" name="nom"  class="form-control">
+    <input type="text" id="nom" name="nom"  class="form-control" value="{{$user->name}}">
     @error('nom')
     <span class="text-danger">{{ $message }}</span>
     @enderror
@@ -55,7 +55,7 @@
 
 <div class="form-input">
     <label for="email">email:</label>
-    <input type="email" id="email" name="email"  class="form-control">
+    <input type="email" id="email" name="email"  class="form-control" value="{{$user->email}}">
     @error('email')
     <span class="text-danger">{{ $message }}</span>
     @enderror

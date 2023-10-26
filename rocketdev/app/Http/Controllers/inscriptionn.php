@@ -7,6 +7,7 @@ use App\Models\Inscription;
 use App\Models\formationModel;
 use App\Models\User;
 use App\Notifications\InscriptionNotification;
+use Illuminate\Support\Facades\Auth;
 
 class inscriptionn extends Controller
 {
@@ -14,10 +15,13 @@ class inscriptionn extends Controller
 
 
     public function create(Request $request)
-    {
+    {   if (Auth::check()) {
+        $user = Auth::user();
         $id_formation = $request->get('formation');
+        return view('inscription.create', compact('id_formation', 'user'));
+    }
 
-        return view('inscription.create', compact('id_formation'));
+       return redirect()->route('login');
     }
 
 
