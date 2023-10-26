@@ -29,7 +29,6 @@
 
 
                             </li>
-<<<<<<< HEAD
                             <li><a href="contact.html">Contactt</a></li>
                             @guest
                                 <li class="nav-item">
@@ -47,12 +46,6 @@
                                 </li>
                             @endguest
                                                     <li><a class="main-btn" href="post-job.html">Post a job</a></li>
-=======
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="">Log In</a></li>
-
-                            <li><a class="main-btn" href="post-job.html">Post a job</a></li>
->>>>>>> mariem2
                         </ul> <!-- navbar nav -->
                     </div>
 
@@ -69,8 +62,5 @@
                         </div>
                     </div> <!-- language -->
                 </nav>
-<<<<<<< HEAD
 
                 
-=======
->>>>>>> mariem2
