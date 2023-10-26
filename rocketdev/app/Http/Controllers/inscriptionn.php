@@ -42,8 +42,6 @@ class inscriptionn extends Controller
         if($formation->prix == 0){
             $notification = new InscriptionNotification( $insription->id);
 
-            //$notification->inscription_id = $insription ->id;
-
             $notification->toMail(null);
 
 
@@ -66,15 +64,12 @@ class inscriptionn extends Controller
     $inscription = Inscription::find($id);
 
     if ($inscription) {
-        // Mettez à jour l'état d'inscription à "confirmé"
         $inscription->etat = 'confirmé';
         $inscription->save();
 
-        // Redirigez l'utilisateur vers une page de confirmation
         return view('inscription.confirmation');
 
     } else {
-        // Gérez le cas où l'inscription n'a pas pu être confirmée
         return view('inscription.list');
     }
 }
