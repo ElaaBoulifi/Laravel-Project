@@ -35,6 +35,30 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/participate/create', 'App\Http\Controllers\ParticipateController@create')->name('participate.create');
+Route::post('/participations', 'App\Http\Controllers\ParticipateController@store')->name('participate.store');
+Route::get('/map', function () {
+    return view('events.map');
+});
+
+
+
+Route::get('/generer-pdf', 'App\Http\Controllers\EventController@generatePDF')->name('generer.pdf');
+Route::get('/events', 'EventController@searchByTitle')->name('events.index');
+
+
+
+Route::get('/events/create','App\Http\Controllers\EventController@create');
+Route::post('/events', 'App\Http\Controllers\EventController@store')->name('events.store');
+Route::get('/events/list',[EventController::class,'list' ])->name('events.list');
+Route::get('/eventsfront', [EventController::class, 'index'])->name('events.index');
+
+
+
+
+Route::delete('/events/{events}', [EventController::class,'destroy' ])->name('events.delete');
+Route::get('/events/{events}/edit', 'App\Http\Controllers\EventController@edit')->name('events.edit');
+Route::put('/updatee/{events}', 'App\Http\Controllers\EventController@update')->name('events.updatee');
 
 Route::get('/','App\Http\Controllers\FormationController@getall')->name('share.home');
 
