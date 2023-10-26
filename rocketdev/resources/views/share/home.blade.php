@@ -8,8 +8,8 @@
     <!--[if IE]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
-    
-   
+
+
     <!--====== PRELOADER PART START ======-->
 
     <div class="preloader">
@@ -294,29 +294,29 @@
                                     <p class="time"><i class="fa fa-clock-o"></i>{{$formation->date_debut}} </p>
                                 </div>
                                 <div class="jobs_btn">
-                                    <a href="job-details.html" class="main-btn main-btn-2" data-toggle="modal" data-target="#exampleModal">inscrivez vous</a>
+                                <a class="main-btn "href="{{ route('inscription.create', ['formation' => $formation->id]) }}">inscriver vous</a>
                                 </div>
                                 <!-- Button trigger modal -->
 
 <!-- Modal -->
-                </div> <!-- single jobs -->
+                     </div> <!-- single jobs -->
                         </div>
-                        
-                       
-  
+
+
+
                      <!-- Affichez d'autres attributs ici -->
                     @endforeach
                     </div> <!-- row -->
                 </div>
-       
+
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
-                    
+
     <div class="modal-dialog d-flex justify-content-center">
     <br>
                     <br>
                     <br>
         <div class="modal-content w-75">
-        
+
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel3">Subscribe</h5>
                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
@@ -486,8 +486,8 @@
 
             <a class="main-btn" href="https://rebrand.ly/jobmate-gg" rel="nofollow">Purchase Now</a>
             </br>
-                
-            </div>  
+
+            </div>
         </div> <!-- container -->
     </section>
 
@@ -522,9 +522,9 @@
             </div> <!-- subscribe wrapper -->
         </div> <!-- container -->
     </section>
- 
+
 </div>
-            
+
     <!--====== SUBSCRIBE PART ENDS ======-->
 
     <!--====== FOOTER PART START ======-->
@@ -546,7 +546,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-">
-                    
+
                 </div>
             </div>
         </div>
