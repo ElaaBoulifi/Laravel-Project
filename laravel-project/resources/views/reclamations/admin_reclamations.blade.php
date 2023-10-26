@@ -1,6 +1,29 @@
 @extends('backoffice.main')
 @section('content')
 <style>
+    <style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination .page-item {
+        margin: 0 5px;
+    }
+
+    .pagination .page-item a {
+        text-decoration: none;
+        padding: 5px 10px;
+        background-color: #007BFF;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    .pagination .page-item a:hover {
+        background-color: #0056b3;
+    }
+
     /* Style for the search input */
     .search-input {
         width: 350px; /* Set the width as desired */
@@ -52,10 +75,34 @@
                             
                             <div class="datatable-container">
                                 <!-- search.blade.php -->
-                                <form action="{{ route('reclamations.nontraitees') }}" id="search-form" method="GET">
+                                <form action="{{ url()->current() }}" id="search-form" method="GET">
                                 <div class="search-box">
                                         <input class="search-input" type="text" name="search" id="search" placeholder="Rechercher par sujet, categorie.." value="{{ request('search') }}" >
                                         <i class="fa fa-search search-icon"></i></div>
+                                        <br>
+                                    <select class="search-input"name="categorie" id="categorie">
+                                        <option disabled selected value="" >Categorie Filter</option>
+                                        <option value="" >Tous</option>
+                                        <option value="FACTURATION" {{ request('categorie') == 'FACTURATION' ? 'selected' : '' }}>Facturation</option>
+                                        <option value="PROBLEME_TECHNIQUE" {{ request('categorie') == 'PROBLEME_TECHNIQUE' ? 'selected' : '' }}>Problème Technique</option>
+                                        <option value="SERVICE_CLIENT" {{ request('categorie') == 'SERVICE_CLIENT' ? 'selected' : '' }}>Service Client</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+
+
+                                    <select class="search-input"name="evaluation" id="evaluation">
+                                        <option disabled selected value="" >Evaluation Filter</option>
+                                        <option value="" >Tous</option>
+                                        <option value="1" {{ request('evaluation') == '1' ? 'selected' : '' }}>Basse</option>
+                                        <option value="2" {{ request('evaluation') == '2' ? 'selected' : '' }}>Moyenne </option>
+                                        <option value="3" {{ request('evaluation') == '3' ? 'selected' : '' }}>Elevee </option>
+                                        <option value="4" {{ request('evaluation') == '4' ? 'selected' : '' }}>Tres Elevee</option>
+
+                                        <!-- Add more options as needed -->
+                                    </select>
+
+                                    <button class="btn btn-primary edit-item" type="submit">Filter</button>
+
                                 </form>
                                 <br>
                                 <table class="table">
@@ -66,17 +113,7 @@
                                             <th>Description</th>
                                             <th>Date</th>
                                             <th>Categorie</th>
-                                            <th><form action="{{ route('reclamations.nontraitees') }}" method="GET">
-                                                    <select name="categorie">
-                                                        <option value="">Toutes les catégories</option>
-                                                        <option value="Catégorie 1">Catégorie 1</option>
-                                                        <option value="Catégorie 2">Catégorie 2</option>
-                                                        <!-- Ajoutez d'autres options pour chaque catégorie -->
-                                                    </select>
-                                                    <button type="submit">Filtrer</button>
-                                                </form>
-
-                                            </th>
+                                            <th>Evaluation</th>
                                             <th>Etat</th>
                                             <th>Piece jointe </th>
 
@@ -95,9 +132,9 @@
                                                     @elseif ($item->evaluation == 2)
                                                         <td>Moyenne</td>
                                                     @elseif ($item->evaluation == 3)
-                                                        <td>Haute évaluation</td>
+                                                        <td>Elevee</td>
                                                     @else
-                                                        <td>Évaluation très haute</td>
+                                                        <td>Très elevee</td>
                                                     @endif
 
                                                 <td>{{ $item->etat }}</td>
@@ -115,7 +152,6 @@
                                                 <td>
                                                     @if ($item->etat === 'traité')
                                                         @if ($item->reponse) <!-- Vérifiez si la réclamation a une réponse -->
-
                                                             <a href="{{ route('reponses.show', ['reponse' => $item->reponse->id]) }}" class="btn btn-primary"> Réponse</a>
                                                         @endif
                                                     @endif
@@ -135,6 +171,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="pagination">
+    {{ $reclamations->links('pagination::simple-bootstrap-4') }}
+</div>
 
                             </div>                  
                         </div>
@@ -143,7 +182,7 @@
 
             </div>
         </div>
-       
+
     </section>
     <script src="{{ asset('path-to-lightbox2/js/lightbox.js') }}"></script>
 <link href="{{ asset('path-to-lightbox2/css/lightbox.css') }}" rel="stylesheet">
@@ -155,49 +194,6 @@
         });
     });
 </script> -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // Fonction pour trier la table
-        function sortTable($th) {
-            var $table = $("table");
-            var column = $th.index();
-            var order = "asc";
-
-            if ($th.hasClass("asc")) {
-                order = "desc";
-            }
-
-            $th.siblings().removeClass("asc desc");
-            $th.addClass(order);
-
-            $th.find(".sort-icon").removeClass("asc desc");
-            $th.find(".sort-icon").addClass(order);
-
-            var $rows = $table.find("tbody tr").get();
-            $rows.sort(function (a, b) {
-                var keyA = $(a).find("td").eq(column).text();
-                var keyB = $(b).find("td").eq(column).text();
-
-                if (order === "asc") {
-                    return keyA.localeCompare(keyB);
-                } else {
-                    return keyB.localeCompare(keyA);
-                }
-            });
-
-            $.each($rows, function (index, row) {
-                $table.children("tbody").append(row);
-            });
-        }
-
-        // Gestionnaire de clic sur les en-têtes de colonne
-        $("table th[data-sort]").on("click", function () {
-            var $th = $(this);
-            sortTable($th);
-        });
-    });
-</script>
 
 
 @endsection

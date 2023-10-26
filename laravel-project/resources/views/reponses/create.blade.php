@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Réponse réclamation</h5>
                  
-                    <form method="POST" action="{{route('reponses.store')}}">
+                    <form method="POST" action="{{route('reponses.store')}}" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="reclamation_id" value="{{ $reclamation_id }}">
                         <div class="row mb-3">
@@ -16,8 +16,9 @@
                                 <textarea type="text" id="contenu" name="contenu" class="form-control"></textarea>
                             </div>
                         </div>
-                      
-                       
+                        <div class="col-md-12"><br>
+                            <input type="file" name="piece_jointe" id="piece_jointe" class="form-control-file">
+                        </div> 
                         <div class="row mb-3"><br>
                             <div class="col-sm-10"><br>
                                 <button type="submit" class="btn btn-primary">Envoyer réponse</button>

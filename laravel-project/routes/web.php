@@ -43,6 +43,7 @@ Route::get('/reponse', [ReponseController::class,'create'])->name('reponses.crea
 Route::post('/reponses', [ReponseController::class,'store'])->name('reponses.store');
 Route::get('/reponses/{reponse}', [ReponseController::class, 'show'])->name('reponses.show');
 Route::get('/reponses/{reponse}/client', [ReponseController::class, 'showFront'])->name('reponses.showFront');
+Route::get('/chart', [ReclamationController::class, 'charts'])->name('reclamations.charts');
 
 
 Route::get('/freelancers', [FreelancerController::class,'index'])->name('Freelancer.index');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reclamation;
+use DB;
 
 class ReclamationController extends Controller
 {
@@ -22,11 +23,11 @@ class ReclamationController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'sujet' => 'required|string',
+            'sujet' => 'required|string' ,
             'description' => 'required|string',
             'categorie' => 'required|string',
             'evaluation' => 'required|integer',
-            'piece_jointe' => 'required|file|max:2048',
+            'piece_jointe' => 'file|max:2048',
 
         ]);
         
@@ -46,7 +47,7 @@ class ReclamationController extends Controller
         $reclamation = new Reclamation($data);
         $reclamation->save();
 
-        return redirect()->route('reclamations.create')->with('success', 'Réclamation soumise avec succès.');
+        return redirect()->route('reclamations.reclamations')->with('success', 'Réclamation soumise avec succès.');
     }
     public function destroy($id)
     {
@@ -67,7 +68,6 @@ class ReclamationController extends Controller
     {
         // Affichez toutes les réclamations pour les administrateurs
         //$reclamations = Reclamation::all();
-        $categorie = $request->input('categorie');
     
         $reclamations = Reclamation::query();
     
@@ -77,8 +77,7 @@ class ReclamationController extends Controller
     
         $reclamations = $reclamations->get();
     
-    
-        $reclamationsTraitees = Reclamation::where('etat', 'traité')->get();
+        $reclamationsTraitees = Reclamation::where('etat', 'traité')->paginate(4);
 
         
         return view('reclamations.admin_reclamations', ['reclamations' => $reclamationsTraitees]);
@@ -86,36 +85,47 @@ class ReclamationController extends Controller
 
     public function indexNonTraitees(Request $request)
     {
-
+        $category = $request->input('categorie');
+        $evaluation = $request->input('evaluation');
         $search = $request->input('search');
 
-        $query = Reclamation::where('etat' ,'en cours de traitement')
-            ->when($search, function ($query) use ($search) {
-                return $query->where(function ($subquery) use ($search) {
-                    $subquery->where('sujet', 'like', '%' . $search . '%')
-                            ->orWhere('categorie', 'like', '%' . $search . '%')
-                            ->orWhere('evaluation', 'like', '%' . $search . '%');
-                });
-            })
-            ->get();
+        $query = Reclamation::where('etat', 'en cours de traitement');
 
-            $order = $request->input('order', 'asc'); // Par défaut, tri ascendant
+        if (!empty($category)) {
+            $query->where('categorie', $category);
+        }
 
-            $reclamations = $query->sortBy('date_soumission');
-        
+        if (!empty($evaluation)) {
+            $query->where('evaluation', $evaluation);
+        }
+
+        if (!empty($search)) {
+            $query->where(function ($subquery) use ($search) {
+                $subquery->where('sujet', 'like', '%' . $search . '%')
+                    ->orWhere('categorie', 'like', '%' . $search . '%')
+                    ->orWhere('evaluation', 'like', '%' . $search . '%');
+            });
+        }
+
+        $reclamations = $query->paginate(4);
 
         return view('reclamations.admin_reclamations', compact('reclamations'));
+    }
 
-    }    
+    public function list()
+    {
+        $data = Reclamation::paginate(5);; // Retrieve data from the database
 
+        return view('reclamations.admin_reclamations', compact('data'));
+       
+    }
 
     public function trierReclamations(Request $request)
     {
         $column = $request->input('date_soumission');
 
-        // Effectuez la requête pour obtenir les données triées en utilisant $column
 
-        $reclamations = Reclamation::where('etat', 'en cours de traitement')
+        $reclamations = Reclamation::where('etat', 'traité')
         ->orderBy('evaluation', 'desc') // Pour un tri descendant
         ->get();
     
@@ -130,5 +140,21 @@ class ReclamationController extends Controller
     }
 
 
+    public function charts()
+    {
+        $monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        $data = Reclamation::select(DB::raw("MONTH(date_soumission) as month, COUNT(*) as count"))
+            ->groupBy('month')
+            ->get();
+    
+            $labels = $data->pluck('month')->map(function ($month) use ($monthNames) {
+                return $monthNames[$month - 1]; 
+            });
+                $data = $data->pluck('count');
+    
+        return view('reclamations.charts', compact('labels', 'data'));
+    }
+    
 }
 
