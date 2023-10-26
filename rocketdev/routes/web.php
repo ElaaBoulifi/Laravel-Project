@@ -23,17 +23,24 @@ use App\Http\Controllers\stripecontroller;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
+})->name('welcome');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('welcome');
+    })->name('welcome');
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return redirect('/');
     })->name('dashboard');
 });
+
 
 Route::get('/participate/create', 'App\Http\Controllers\ParticipateController@create')->name('participate.create');
 Route::post('/participations', 'App\Http\Controllers\ParticipateController@store')->name('participate.store');
