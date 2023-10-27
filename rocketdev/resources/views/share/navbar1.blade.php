@@ -10,24 +10,30 @@
                     <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="active"><a href="{{ route('share.home') }}">Home</a></li>
+                            <li><a href="{{ route('events.index') }}">Events</a></li>
                             @guest
                           
                             @else
+                            @if(auth()->check() && preg_match('/freelancer/i', auth()->user()->name))
                             <li>
-                                <a href="{{ route('projet') }}">Posutler pour un projet</a>
+                                <a href="{{ route('projet') }}">Projets</a>
 
                             </li>
-                            <li><a href="{{ route('freelancer-resumes.create') }}">Mon Résumé</a></li>
-                            <li><a href="{{ route('freelancer-resumes.create') }}">Freelancers</a></li>
-                            <li><a href="{{ route('events.index') }}">Events</a></li>
+                            @endif
+                            <li><a href="{{ route('freelancer-resumes.list') }}">Freelancers</a></li>
+                           
                             <li><a href="{{ route('reclamations.create') }}">Réclamer</a></li>
+                            @if(auth()->check() && preg_match('/freelancer/i', auth()->user()->name))
+                            <li><a href="{{ route('freelancer-resumes.create') }}">Mon Résumé</a></li>
+                            @endif
+                            @if(auth()->check() && preg_match('/client/i', auth()->user()->name))
                             <li><a class="main-btn" href="{{ route('projet.create') }}">Post a job</a></li>
-                            
-
+                            @endif
                             @endguest
-
+                        
                            
                             @guest
+                          
                             <li class="nav-item">
                                 <a class="nav-link" href="/login">Login</a>
                             </li>
@@ -45,6 +51,7 @@
                                 </form>
                             </li>
                         @endguest
+                    
                         </ul> <!-- navbar nav -->
                     </div>
 

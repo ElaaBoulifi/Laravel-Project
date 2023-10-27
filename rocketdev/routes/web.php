@@ -118,6 +118,7 @@ Route::put('/freelancers/{freelancer}/update', [FreelancerController::class,'upd
 Route::get('/','App\Http\Controllers\FormationController@getall')->name('share.home');
 
 Route::get('/freelancer-resumes', [FreelancerResumeController::class, 'index'])->name('freelancer-resumes.index');
+Route::get('/freelancer-list', [FreelancerResumeController::class, 'list'])->name('freelancer-resumes.list');
 Route::get('/freelancer-resumes/create', [FreelancerResumeController::class, 'create'])->name('freelancer-resumes.create');
 Route::post('/freelancer-resumes', [FreelancerResumeController::class, 'store'])->name('freelancer-resumes.store');
 Route::get('/freelancer-resumes/{id}', [FreelancerResumeController::class, 'show'])->name('freelancer-resumes.show');
@@ -143,3 +144,7 @@ Route::post('/reponses', [ReponseController::class,'store'])->name('reponses.sto
 Route::get('/reponses/{reponse}', [ReponseController::class, 'show'])->name('reponses.show');
 Route::get('/reponses/{reponse}/client', [ReponseController::class, 'showFront'])->name('reponses.showFront');
 Route::get('/chart', [ReclamationController::class, 'charts'])->name('reclamations.charts');
+
+
+
+Route::post('/send-email', 'EmailController@sendEmail');

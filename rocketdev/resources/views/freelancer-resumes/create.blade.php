@@ -30,44 +30,80 @@
                             @method('POST')
                          
                             <h4 class="resume_title">Basic information</h4>
+<div class="single_resume">
+    <label for="Name">Name</label>
+    <input type="text" id="Name" name="Name" placeholder="Name" value="{{ old('Name', $existingResume ? $existingResume->Name : '') }}">
+</div> <!-- single resume -->
 
-                            <div class="single_resume">
-                                <label for="Name">Name</label>
-                                <input type="text" id="Name" name="Name" placeholder="Name">
-                            </div> <!-- single resume -->
+<div class="single_resume">
+    <label for="Email">Email</label>
+    <input type="email" id="Email" name="Email" placeholder="your@domain.com" value="{{ old('Email', $existingResume ? $existingResume->Email : '') }}">
+</div> <!-- single resume -->
 
-                            <div class="single_resume">
-                                <label for="Email">Email</label>
-                                <input type="email" id="Email" name="Email" placeholder="your@domain.com">
-                            </div> <!-- single resume -->
+<div class="single_resume">
+    <label for="Profession_Title">Profession Title</label>
+    <input type="text" id="Profession_Title" name="Profession_Title" placeholder="Headline (e.g. Front-end developer)" value="{{ old('Profession_Title', $existingResume ? $existingResume->Profession_Title : '') }}">
+</div> <!-- single resume -->
 
-                            <div class="single_resume">
-                                <label for="Profession_Title">Profession Title</label>
-                                <input type="text" id="Profession_Title" name="Profession_Title"
-                                    placeholder="Headline (e.g. Front-end developer)">
-                            </div> <!-- single resume -->
+<div class="single_resume">
+    <label for="Location">Location</label>
+    <input type="text" id="Location" name="Location" placeholder="Location, e.g" value="{{ old('Location', $existingResume ? $existingResume->Location : '') }}">
+</div> <!-- single resume -->
 
-                            <div class="single_resume">
-                                <label for="Location">Location</label>
-                                <input type="text" id="Location" name="Location" placeholder="Location, e.g">
-                            </div> <!-- single resume -->
+<div class="single_resume">
+    <label for="Web">Web</label>
+    <input type="text" id="Web" name="Web" placeholder="Website address" value="{{ old('Web', $existingResume ? $existingResume->Web : '') }}">
+</div> <!-- single resume -->
 
-                            <div class="single_resume">
-                                <label for="Web">Web</label>
-                                <input type="text" id="Web" name="Web" placeholder="Website address">
-                            </div> <!-- single resume -->
+<div class="single_resume">
+    <label for="Per_Hour">Per Hour</label>
+    <input type="number" id="Per_Hour" name="Per_Hour" placeholder="Salary, e.g. 85" value="{{ old('Per_Hour', $existingResume ? $existingResume->Per_Hour : '') }}">
+</div> <!-- single resume -->
 
-                            <div class="single_resume">
-                                <label for="Per_Hour">Per Hour</label>
-                                <input type="number" id="Per_Hour" name="Per_Hour" placeholder="Salary, e.g. 85">
-                            </div> <!-- single resume -->
+<div class="single_resume">
+    <label for="Age">Age</label>
+    <input type="number" id="Age" name="Age" placeholder="Years old" value="{{ old('Age', $existingResume ? $existingResume->Age : '') }}">
+</div> <!-- single resume -->
+<table>
+    <thead>
+        <tr>
+            <th>Company Name</th>
+            <th>Title</th>
+            <th>Date From</th>
+            <th>Date To</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($workExperiences as $workExperience)
+            <tr>
+                <td>{{ $workExperience->company_name }}</td>
+                <td>{{ $workExperience->title }}</td>
+                <td>{{ $workExperience->date_from }}</td>
+                <td>{{ $workExperience->date_to }}</td>
+                <td>{{ $workExperience->description }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
-                            <div class="single_resume">
-                                <label for="Age">Age</label>
-                                <input type="number" id="Age" name="Age" placeholder="Years old">
-                            </div> <!-- single resume -->
-
-                         
+<!-- Display skills -->
+<table>
+    <thead>
+        <tr>
+            <th>Skill Name</th>
+            <th>Proficiency</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($skills as $skill)
+            <tr>
+                <td>{{ $skill->Skill_Name }}</td>
+                <td>{{ $skill->proficiency }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
                            
                             <h4 class="resume_title Work_scroll">Work Experience</h4>
                             <div id="workExperienceFields">

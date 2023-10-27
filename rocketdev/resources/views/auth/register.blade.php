@@ -30,7 +30,16 @@
                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
-
+            ROLE : 
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="role" id="client" value="client" wire:model="state.role">
+                <label class="form-check-label" for="client">Client</label>
+            </div>
+            
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="role" id="freelancer" value="freelancer" wire:model="state.role">
+                <label class="form-check-label" for="freelancer">Freelancer</label>
+            </div>
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-label for="terms">
