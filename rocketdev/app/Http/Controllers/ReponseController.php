@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\ReclamationTraitee;
 use Illuminate\Http\Request;
 use App\Models\Reponse;
-use App\Notifications\ReponseMail;
 use Illuminate\Support\Facades\Notification;
 
 class ReponseController extends Controller
@@ -40,6 +40,9 @@ class ReponseController extends Controller
        $reclamation->save();
     //    Notification::route('mail', $data['email'])
     //    ->notify(new ReponseMail());
+    $userEmail = $reclamation->user->email; // Replace 'user' with your actual relationship method
+
+    Notification::route('mail', $userEmail)->notify(new ReclamationTraitee());
 
         return redirect()->route('reclamations.admin_reclamations')->with('success', 'Réclamation soumise avec succès.');
     }

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CandidatureReceived extends Notification
+class ReclamationTraitee extends Notification
 {
     use Queueable;
 
@@ -41,8 +41,8 @@ class CandidatureReceived extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->line('Réponse concernant votre réclamation')
-        ->line('Reclamation traité.')
+        ->line('Votre réclamation a été traitée')
+        ->line('Reclamation traitée. Visiter notre site pour voir la réponse concernant votre réclamation.')
         ->action('Visitez notre site', url('/'))
         ->line('Merci d\'avoir postulé chez nous!');
     }
