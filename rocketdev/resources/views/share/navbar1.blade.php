@@ -17,8 +17,11 @@
                                 <a href="{{ route('projet') }}">Posutler pour un projet</a>
 
                             </li>
+                            <li><a href="{{ route('events.index') }}">Events</a></li>
                             <li><a href="{{ route('reclamations.create') }}">Réclamer</a></li>
                             <li><a class="main-btn" href="{{ route('projet.create') }}">Post a job</a></li>
+                            
+
                             @endguest
 
                            
