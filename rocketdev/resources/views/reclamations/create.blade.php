@@ -1,5 +1,18 @@
 @extends('share.main')
 @section('content')
+<div class="page_banner bg_cover" style="background-image: url(assets/images/page_banner.jpg); height: 500px;" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner_content d-sm-flex align-items-center justify-content-between">
+                            <div class="content">
+                                <h3 class="page_title">Mes réclamations</h3>
+                            </div> <!-- content -->
+                        </div> <!-- banner content -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- page banner -->
 
 <section class="contact_area pt-30 pb-80">
         <div class="container">
@@ -67,55 +80,10 @@
                         </form>
                     </div> <!-- contact form -->
                 </div>
-                <div class="col-lg-6">
-                    <div class="contact_info mt-45">
-                        <h4 class="contact_title">Contact Address</h4>
-
-                        <div class="contact_info_wrapper">
-
-                            <div class="single_contact_info d-sm-flex">
-                                <div class="contact_icon">
-                                    <i class="fa fa-map-marker"></i>
-                                </div>
-                                <div class="contact_content media-body">
-                                    <p>Main Office: NO.22-23 Street Name- City,Country </p>
-                                    <p>Customer Center: NO.130-45 Streen Name- City, Country</p>
-                                </div>
-                            </div> <!-- single contact info -->
-
-                            <div class="single_contact_info d-sm-flex">
-                                <div class="contact_icon">
-                                    <i class="fa fa-envelope"></i>
-                                </div>
-                                <div class="contact_content media-body">
-                                    <p>Customer Support: info@mail.com </p>
-                                    <p>Technical Support: support@mail.com</p>
-                                </div>
-                            </div> <!-- single contact info -->
-
-                            <div class="single_contact_info d-sm-flex">
-                                <div class="contact_icon">
-                                    <i class="fa fa-phone"></i>
-                                </div>
-                                <div class="contact_content media-body">
-                                    <p>Main Office: +880 123 456 789 </p>
-                                    <p>Customer Supprort: +880 123 456 789</p>
-                                </div>
-                            </div> <!-- single contact info -->
-
-                        </div> <!-- contact info -->
-                    </div> <!-- contact info -->
-                </div>
+         
             </div> <!-- row -->
          
         </div> <!-- container -->
     </section>
-    <div class="footer_copyright">
-            <div class="container">
-                <div class="copyright_content text-center d-sm-flex justify-content-between align-items-center">
-                    <a href="#" class="logo"><img src="assets/images/logo.png" alt="Logo"></a>
-                    <p class="copyright">JobMate © 2024 All Right Reserved</p>
-                </div> <!-- copyright content -->
-            </div> <!-- container -->
-        </div> <!-- footer copyright -->
+   
 @endsection

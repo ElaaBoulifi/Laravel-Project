@@ -10,6 +10,7 @@ use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\ReponseController;
 use App\Http\Controllers\stripecontroller;
+use App\Http\Controllers\EventController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

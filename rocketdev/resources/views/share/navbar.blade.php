@@ -105,34 +105,6 @@
 
                                 </ul>
                             </li>
-                            <style>
-    .login-prompt {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        z-index: 9999;
-    }
-
-    .login-prompt-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 20px;
-        background: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        text-align: center;
-    }
-
-    .login-prompt-button {
-        margin-top: 10px;
-    }
-</style>
 
                             @guest
                             <div class="login-prompt">

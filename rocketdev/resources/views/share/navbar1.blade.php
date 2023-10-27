@@ -10,11 +10,6 @@
                     <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="active"><a href="{{ route('share.home') }}">Home</a></li>
-                           
-                           
-                          
-                          
-                          
                             @guest
                           
                             @else
@@ -24,12 +19,13 @@
                             </li>
                             <li><a href="{{ route('freelancer-resumes.create') }}">Mon Résumé</a></li>
                             <li><a href="{{ route('freelancer-resumes.create') }}">Freelancers</a></li>
+                            <li><a href="{{ route('events.index') }}">Events</a></li>
                             <li><a href="{{ route('reclamations.create') }}">Réclamer</a></li>
                             <li><a class="main-btn" href="{{ route('projet.create') }}">Post a job</a></li>
+                            
+
                             @endguest
 
-                           
-                          
                            
                             @guest
                             <li class="nav-item">

@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <div class="banner_content d-sm-flex align-items-center justify-content-between">
                     <div class="content">
-                        <h3 class="page_title">Login</h3>
+                        <h3 class="page_title">JobMate</h3>
                         <p>More than 6 million jobseekers turn to Fitcareer in their search for work, making over 150,000 applications every day.</p>
                     </div> <!-- content -->
                     <div class="banner_btn">
