@@ -22,6 +22,8 @@
                                 <a href="{{ route('projet') }}">Posutler pour un projet</a>
 
                             </li>
+                            <li><a href="{{ route('freelancer-resumes.create') }}">Mon Résumé</a></li>
+                            <li><a href="{{ route('freelancer-resumes.create') }}">Freelancers</a></li>
                             <li><a href="{{ route('reclamations.create') }}">Réclamer</a></li>
                             <li><a class="main-btn" href="{{ route('projet.create') }}">Post a job</a></li>
                             @endguest
@@ -32,6 +34,9 @@
                             @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register">Register</a>
                             </li>
                         @else
                             <li class="nav-item">

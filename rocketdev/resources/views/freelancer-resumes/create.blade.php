@@ -28,10 +28,7 @@
                         <form method="POST" action="{{ route('freelancer-resumes.store') }}">
                             @csrf
                             @method('POST')
-                            <div class="resume_account">
-                                <p>Already have an account? <a href="#">Click here to login</a></p>
-                            </div> <!-- resume account -->
-
+                         
                             <h4 class="resume_title">Basic information</h4>
 
                             <div class="single_resume">
@@ -70,16 +67,8 @@
                                 <input type="number" id="Age" name="Age" placeholder="Years old">
                             </div> <!-- single resume -->
 
-                            <h4 class="resume_title Education_scroll">Education</h4>
-                            <div id="educationFields">
-
-
-                                
-                            </div>
-                            <div class="single_resume d-flex justify-content-between">
-                                <a class="add_new add_new_education" href="#">Add New Education</a>
-
-                            </div>
+                         
+                           
                             <h4 class="resume_title Work_scroll">Work Experience</h4>
                             <div id="workExperienceFields">
 
@@ -98,85 +87,22 @@
 
                             </div> <!-- single resume -->
 
+                            
+                            <label for="resume_pdf">Resume PDF </label>
+                            <input type="file" id="resume_pdf" class="form-control" name="resume_pdf"> 
+
+
                             <div class="single_resume d-flex justify-content-between">
                                 <button class="main-btn">Save</button>
                             </div> <!-- single resume -->
-
+                          
+                            
                         </form>
                     </div> <!-- add resume form -->
                 </div>
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const educationFields = document.getElementById('educationFields');
-            const addEducationButton = document.querySelector('.add_new_education');
-            let educationCounter = 1; // Initialize the counter
-
-            addEducationButton.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                const sectionId = `educationSection${educationCounter}`; // Generate a unique ID
-                const newEducationField = document.createElement('div');
-                newEducationField.id = sectionId; // Set the ID for the section
-                newEducationField.innerHTML = `
-                <div class="single_resume">
-                    <label>Degree</label>
-                    <input type="text" name="education[degree][]" placeholder="Degree, e.g. Bachelor">
-                </div>
-                <div class="single_resume">
-                    <label>Field of Study</label>
-                    <input type="text" name="education[field_of_study][]" placeholder="Major, e.g Computer Science">
-                </div>
-                <div class="single_resume">
-                    <label>School</label>
-                    <input type="text" name="education[school][]" placeholder="School name, e.g. Massachusetts Institute of Technology">
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="single_resume">
-                            <label>From</label>
-                            <input type="date" name="education[from][]" placeholder="e.g 2014">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="single_resume">
-                            <label>To</label>
-                            <input type="date" name="education[to][]" placeholder="e.g 2020">
-                        </div>
-                    </div>
-                </div>
-                <div class="single_resume">
-                    <label>Description</label>
-                    <textarea name="education[description][]" placeholder=""></textarea>
-                </div>
-                <div class="single_resume d-flex justify-content-between">
-                    <a class="delete" href="#" data-section-id="${sectionId}" onclick="return false;">Delete This</a>
-                </div>
-                `;
-
-                educationFields.appendChild(newEducationField);
-
-                // Add event listener for delete button
-                const deleteButton = newEducationField.querySelector('.delete');
-                deleteButton.addEventListener('click', function() {
-                    const sectionIdToDelete = this.getAttribute('data-section-id');
-                    const sectionToDelete = document.getElementById(sectionIdToDelete);
-                    educationFields.removeChild(sectionToDelete);
-                    const scrollTarget = document.querySelector('.Education_scroll');
-                    if (scrollTarget) {
-                        scrollTarget.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-
-                educationCounter++; // Increment the counter for the next section
-            });
-        });
-    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

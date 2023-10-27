@@ -8,6 +8,9 @@ use App\Models\FreelancerResume;
 use App\Models\FreelancerEducation;
 use App\Models\FreelancerWorkExperience;
 use App\Models\FreelancerSkill;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 class FreelancerResumeController extends Controller
 {
     public function index()
@@ -23,22 +26,11 @@ class FreelancerResumeController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the form data
-       /* $request->validate([
-            'Name' => 'required|string|max:255',
-            'Email' => 'required|email|unique:freelancer_resumes,email',
-            'Profession_Title' => 'required|string|max:255',
-            'Location' => 'required|string|max:255',
-            'Web' => 'nullable|url',
-            'Per_Hour' => 'nullable|numeric',
-            'Age' => 'nullable|integer',
-            // Add validation rules for education, work experience, and skills fields here
-        ]);
-    */
+        
         // Create a new freelancer resume record and store it in the database
         $freelancerResume = new FreelancerResume();
         $freelancerResume->Name = $request->input('Name');
-        $freelancerResume->user_id = "1";
+        $freelancerResume->user_id = $userId = Auth::user()->id;
         $freelancerResume->Email = $request->input('Email');
         $freelancerResume->Profession_Title = $request->input('Profession_Title');
         $freelancerResume->Location = $request->input('Location');
@@ -49,49 +41,64 @@ class FreelancerResumeController extends Controller
         // Save the basic information
         $freelancerResume->save();
     
-        // Handle education, work experience, and skills fields and store them in related tables
-        // You will need to adapt this part based on your database structure and relationships
-    
-        
-
-    
-       
-            // Example for storing education records:
-            foreach ($request->input('education') as $educationData) {
-                $education = new FreelancerEducation();
+        if ($request->has('education')) {
+                // Example for storing education records:
+                    foreach ($request->input('education') as $educationData) {
+                        $education = new FreelancerEducation();
+                        
+                        // Check if the required fields exist
+                        if (isset($educationData['degree']) && isset($educationData['field_of_study'])) {
+                            $education->degree = $educationData['degree'];
+                            $education->field_of_study = $educationData['field_of_study'];
                 
-                // Check if the required fields exist
-                if (isset($educationData['degree']) && isset($educationData['field_of_study'])) {
-                    $education->degree = $educationData['degree'];
-                    $education->field_of_study = $educationData['field_of_study'];
-        
-                    // Check if other fields exist and set them accordingly
-                    if (isset($educationData['school'])) {
-                        $education->school = $educationData['school'];
+                            // Check if other fields exist and set them accordingly
+                            if (isset($educationData['school'])) {
+                                $education->school = $educationData['school'];
+                            }
+                
+                            if (isset($educationData['from'])) {
+                                $education->from = $educationData['from'];
+                            }
+                
+                            if (isset($educationData['to'])) {
+                                $education->to = $educationData['to'];
+                            }
+                
+                            if (isset($educationData['description'])) {
+                                $education->description = $educationData['description'];
+                            }
+                            
+                            
+                            $freelancerResume->educations()->save($education);
+                        } else {
+                            // Handle missing required fields for education record
+                        }
                     }
-        
-                    if (isset($educationData['from'])) {
-                        $education->from = $educationData['from'];
-                    }
-        
-                    if (isset($educationData['to'])) {
-                        $education->to = $educationData['to'];
-                    }
-        
-                    if (isset($educationData['description'])) {
-                        $education->description = $educationData['description'];
-                    }
-        
-                    $freelancerResume->educations()->save($education);
-                } else {
-                    // Handle missing required fields for education record
                 }
-            }
-      
+       
         
+                if ($request->hasFile('resume_pdf')) {
+                    $user_id = Auth::user()->id;
+                    $file = $request->file('resume_pdf');
+                    $fileName = 'resume_' . $user_id . '.pdf';
+                    Log::info('File name: ' . $fileName);
+                    // Check if a file with the same name exists and delete it
+                    if (Storage::disk('public')->exists($fileName)) {
+                        Storage::disk('public')->delete($fileName);
+                    }
+            
+                    // Store the uploaded PDF file
+                    Storage::disk('public')->put($fileName, file_get_contents($file));
+                    
+                    // You can save the file name in your database if needed
+                    $freelancerResume->pdf_filename = $fileName;
+                    $freelancerResume->save();
+                }
+                
+            
         
       
-        try {
+                    if ($request->has('work_experience')) {
             foreach ($request->input('work_experience') as $workExperienceData) {
                 $workExperience = new FreelancerWorkExperience();
                 
@@ -114,14 +121,11 @@ class FreelancerResumeController extends Controller
         
                 $freelancerResume->workExperience()->save($workExperience);
             }
-        } catch (\Exception $e) {
-            // Handle any exceptions that may occur during the work experience loop
-            // You can log the error, display an error message, or take appropriate action
-        }
+        } 
         
-        try {
+        if ($request->has('skills')) {
             // Example for storing skills records:
-            foreach ($request->input('skills.skill_name') as $index => $skillName) {
+            foreach ($request->input('skills.Skill_name') as $index => $skillName) {
                 $skill = new FreelancerSkill();
                 $skill->Skill_Name = $skillName;
                 
@@ -136,10 +140,7 @@ class FreelancerResumeController extends Controller
             
                 $freelancerResume->skills()->save($skill);
             }
-        } catch (\Exception $e) {
-            // Handle any exceptions that may occur during the skills loop
-            // You can log the error, display an error message, or take appropriate action
-        }
+        } 
         
         
         
