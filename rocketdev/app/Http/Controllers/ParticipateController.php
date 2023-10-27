@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Participate;  
+use App\Models\Participate;
 use App\Models\Events;
 
 use Illuminate\Http\Request;
@@ -22,8 +22,8 @@ class ParticipateController extends Controller
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string',
             'email' => 'required|string',
-            'tel' => 'required|string',          
-            'event_id' => 'required|exists:events,id', 
+            'tel' => 'required|string',
+            'event_id' => 'required|exists:events,id',
         ]);
 
         $participate = new Participate($data);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\formationModel;
 
+use Carbon\Carbon;
 
 class FormationController extends Controller
 {
@@ -24,8 +25,8 @@ class FormationController extends Controller
         $data = $request->validate([
             'titre' => 'required|string|max:255',
             'description' => 'required|string',
-            'date_debut' => 'required|date',
-            'date_fin' => 'required|date',
+            'date_debut' => 'required|date|after:today',
+            'date_fin' => 'required|date|after:date_debut',
             'gategorie' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'prix' => 'required|string'
@@ -45,8 +46,9 @@ class FormationController extends Controller
 
     public function getall()
     {
-        $formations = formationModel::where('gategorie','web')->get();
-        $formationsmobile = formationModel::where('gategorie','mobile')->get();
+        $today = Carbon::now();
+        $formations = formationModel::where('gategorie','web')->whereDate('date_debut', '>=', $today)->get();
+        $formationsmobile = formationModel::where('gategorie','mobile')->whereDate('date_debut', '>=', $today)->get();
         return view('share.home', ['formationsweb' => $formations,'formationsmobile'=>$formationsmobile]);
     }
 

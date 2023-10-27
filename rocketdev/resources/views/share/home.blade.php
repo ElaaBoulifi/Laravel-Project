@@ -87,10 +87,11 @@
 
     <!--====== ABOUT PART START ======-->
 
- 
+
     <!--====== ABOUT PART ENDS ======-->
 
     <!--====== TRENDING JOB PART START ======-->
+
 
     <section class="trending_jobs pt-75 pb-80 gray-bg">
         <div class="container">
@@ -151,6 +152,47 @@
 
 
 
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+
+    <div class="modal-dialog d-flex justify-content-center">
+    <br>
+                    <br>
+                    <br>
+        <div class="modal-content w-75">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Subscribe</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form>
+                    <!-- Name input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="name3" class="form-control" />
+                        <label class="form-label" for="name3">Name</label>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="email3" class="form-control" />
+                        <label class="form-label" for="email3">Email address</label>
+                    </div>
+
+                    <!-- Checkbox -->
+                    <div class="form-check d-flex justify-content-center mb-4">
+                        <input class="form-check-input me-2" type="checkbox" value="" id="checkbox3" checked />
+                        <label class="form-check-label" for="checkbox3">
+                            I have read and agree to the terms
+                        </label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
                 <div class="tab-pane fade" id="mobile" role="tabpanel" aria-labelledby="recent-tab">
 
@@ -189,7 +231,8 @@
         </div> <!-- container -->
     </section>
 
- 
+
+
 
 </div>
 
