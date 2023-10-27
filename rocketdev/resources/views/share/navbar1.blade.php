@@ -12,27 +12,23 @@
                             <li class="active"><a href="{{ route('share.home') }}">Home</a></li>
                            
                            
+                          
+                          
+                          
+                            @guest
+                          
+                            @else
                             <li>
                                 <a href="{{ route('projet') }}">Posutler pour un projet</a>
 
                             </li>
-                          
-                          
-                            @guest
-                            <div class="login-prompt">
-                                <div class="login-prompt-content">
-                                    <p>Please log in to access this content..</p>
-                                    <a href="{{ route('login') }}" class="btn btn-primary login-prompt-button">Log In</a>
-                                    <button class="btn btn-secondary login-prompt-button" id="close-login-prompt">Close</button>
-                                </div>
-                            </div>
-                            @else
                             <li><a href="{{ route('reclamations.create') }}">Réclamer</a></li>
+                            <li><a class="main-btn" href="{{ route('projet.create') }}">Post a job</a></li>
                             @endguest
 
                            
                           
-                            <li><a class="main-btn" href="{{ route('projet.create') }}">Post a job</a></li>
+                           
                             @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="/login">Login</a>
