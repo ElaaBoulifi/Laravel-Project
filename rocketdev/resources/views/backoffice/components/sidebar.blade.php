@@ -6,6 +6,11 @@
    
 
       <li class="nav-item">
+      <li class="nav-item">
+        <a class="nav-link" href="/chart">
+          <i class="bi bi-menu-button-wide"></i><span>Dashboard</span>
+        </a>
+      </li>
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Freelancer</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -23,6 +28,7 @@
       
         </ul>
       </li>
+    
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Formations</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -43,11 +49,18 @@
       <!-- End Components Nav -->
 
       <li class="nav-item">
-      <a  class="{{ request()->is('projet/list*') ? 'active' : '' }}" href="/projet/list">
-              <i class="bi bi-menu-button-wide"></i><span>projects List</span>
-            </a>
-  
-
-    </ul>
-</li>
+        <a class="nav-link collapsed" href="/projet/list">
+          <i class="bi bi-menu-button-wide"></i><span>Projets</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/reclamationslist">
+          <i class="bi bi-menu-button-wide"></i><span>Réclamations</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/events/list">
+          <i class="bi bi-menu-button-wide"></i><span>Events</span>
+        </a>
+      </li>
   </aside><!-- End Sidebar-->

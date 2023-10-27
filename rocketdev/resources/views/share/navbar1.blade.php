@@ -10,11 +10,6 @@
                     <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="active"><a href="{{ route('share.home') }}">Home</a></li>
-                           
-                           
-                          
-                          
-                          
                             @guest
                           
                             @else
@@ -26,8 +21,6 @@
                             <li><a class="main-btn" href="{{ route('projet.create') }}">Post a job</a></li>
                             @endguest
 
-                           
-                          
                            
                             @guest
                             <li class="nav-item">
